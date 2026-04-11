@@ -1,0 +1,13 @@
+{
+  "name": "shift-four-properties-client",
+  "version": "1.0.0",
+  "description": "Frontend landing page for Shift Four Properties",
+  "private": true,
+  "scripts": {
+    "start": "live-server ."
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

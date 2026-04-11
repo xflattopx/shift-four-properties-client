@@ -1,0 +1,231 @@
+:root {
+    --ecu-purple: #592a8a;
+    --ecu-gold: #f3c241;
+    --ink: #1b1830;
+    --paper: #f8f7fc;
+    --card: #ffffff;
+    --soft-line: #ded6ee;
+    --cta-green: #0a9a62;
+    --cta-green-hover: #078453;
+    --success: #0f6a48;
+    --danger: #8e1d1d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Public Sans', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+}
+
+.hero {
+    position: relative;
+    padding: 2.4rem 1rem 1.3rem;
+    background:
+        linear-gradient(145deg, #5d2b93, #3d1d67),
+        repeating-linear-gradient(
+            -45deg,
+            rgba(243, 194, 65, 0.12) 0 12px,
+            transparent 10px 20px
+        );
+}
+
+.wrap {
+    width: min(720px, 92vw);
+    margin: 0 auto;
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+.eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.77rem;
+    color: var(--ecu-gold);
+    font-weight: 700;
+}
+
+h1 {
+    margin: 0.55rem 0 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 10vw, 4.4rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+}
+
+.subheadline {
+    margin: 0.6rem auto 0;
+    max-width: 38rem;
+    line-height: 1.5;
+    font-size: 1rem;
+    color: #f6f0ff;
+}
+
+.hero-cta {
+    display: inline-block;
+    margin-top: 0.95rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: 0.8rem;
+    background: var(--cta-green);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 10px 22px rgba(7, 47, 32, 0.3);
+    transition: background-color 120ms ease;
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+    background: var(--cta-green-hover);
+}
+
+.trust-signals {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+}
+
+.trust-signals p {
+    margin: 0;
+    color: #2d194f;
+    background: #fff;
+    border: 1px solid #e7dbf8;
+    border-radius: 0.85rem;
+    padding: 0.65rem 0.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+main {
+    padding: 1rem 0 2.1rem;
+}
+
+.form-card {
+    background: var(--card);
+    border: 1px solid var(--soft-line);
+    border-radius: 1rem;
+    box-shadow: 0 10px 24px rgba(56, 40, 88, 0.1);
+    padding: 1.05rem;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+h2 {
+    margin: 0;
+    color: #2f2150;
+    font-size: 1.4rem;
+}
+
+.form-subtitle {
+    margin: 0.35rem 0 0.85rem;
+    color: #564a6f;
+    font-size: 0.95rem;
+}
+
+label {
+    display: block;
+    margin: 0.64rem 0 0.28rem;
+    font-weight: 700;
+    font-size: 0.94rem;
+}
+
+input[type="text"],
+input[type="tel"],
+select {
+    width: 100%;
+    border: 1px solid #cfc3e2;
+    border-radius: 0.6rem;
+    font: inherit;
+    padding: 0.72rem;
+    background: #fff;
+}
+
+select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #5f3a8f 50%), linear-gradient(135deg, #5f3a8f 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+select:focus {
+    border-color: var(--ecu-purple);
+    outline: 3px solid rgba(89, 42, 138, 0.2);
+    outline-offset: 0;
+}
+
+button[type="submit"] {
+    margin-top: 0.9rem;
+    width: 100%;
+    background: var(--cta-green);
+    color: #fff;
+    border: none;
+    border-radius: 0.8rem;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.95rem;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus-visible {
+    background: var(--cta-green-hover);
+}
+
+.form-message {
+    min-height: 1.35rem;
+    margin-top: 0.65rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-message.success {
+    color: var(--success);
+}
+
+.form-message.error {
+    color: var(--danger);
+}
+
+.local-trust-line {
+    margin: 0.75rem 0 0;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #6c6384;
+}
+
+@media (min-width: 700px) {
+    .hero {
+        padding: 3.2rem 1.25rem 1.7rem;
+    }
+
+    .wrap {
+        width: min(760px, 92vw);
+    }
+
+    h1 {
+        font-size: clamp(3rem, 7vw, 4.8rem);
+    }
+
+    .trust-signals {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .form-card {
+        padding: 1.45rem 1.6rem;
+    }
+}

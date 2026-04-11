@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shift Four Properties | ECU Area Home Buyer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content wrap">
+            <p class="eyebrow">ECU Area Local Home Buyer</p>
+            <h1>Local Home Buyer in Eastern North Carolina</h1>
+            <p class="subheadline">I buy houses in Greenville, Winterville, Washington, New Bern, Kinston and nearby Eastern NC areas.</p>
+            <a class="hero-cta" href="#seller-form">Get My Cash Offer</a>
+
+            <section class="trust-signals" aria-label="Trust signals">
+                <p>No repairs needed</p>
+                <p>Cash offers in 24-48 hours</p>
+                <p>No realtor fees or commissions</p>
+                <p>Local buyer, not a call center</p>
+            </section>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section class="form-card" aria-labelledby="form-title">
+            <h2 id="form-title">Tell Me About Your Property</h2>
+            <p class="form-subtitle">This takes about 30 seconds. I will follow up with you directly.</p>
+            <form id="seller-form" novalidate>
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+
+                <label for="phone">Best Phone Number</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+
+                <label for="address">Property Address</label>
+                <input type="text" id="address" name="address" autocomplete="street-address" required>
+
+                <label for="condition">Property Condition</label>
+                <select id="condition" name="condition" required>
+                    <option value="" selected disabled>Select one</option>
+                    <option value="Move-in ready">Move-in ready</option>
+                    <option value="Needs minor updates">Needs minor updates</option>
+                    <option value="Needs major repairs">Needs major repairs</option>
+                    <option value="Inherited property">Inherited property</option>
+                    <option value="Tenant occupied">Tenant occupied</option>
+                    <option value="Facing foreclosure or notices">Facing foreclosure or notices</option>
+                </select>
+
+                <button type="submit">Get My Cash Offer</button>
+                <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+            <p class="local-trust-line">Serving Eastern North Carolina homeowners directly.</p>
+        </section>
+    </main>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
