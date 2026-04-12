@@ -11,6 +11,7 @@ frontend:
     baseDirectory: .
     files:
       - index.html
+      - favicon.svg
       - scripts/**/*
       - styles/**/*
   cache:
