@@ -201,6 +201,71 @@ button[type="submit"]:focus-visible {
     color: var(--danger);
 }
 
+/* Success modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(27, 24, 48, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 2.4rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(89, 42, 138, 0.22);
+}
+
+.modal-check {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--cta-green);
+    color: #fff;
+    font-size: 2.2rem;
+    line-height: 64px;
+    margin: 0 auto 1.1rem;
+}
+
+.modal-box h2 {
+    margin: 0 0 0.6rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--ink);
+}
+
+.modal-box p {
+    margin: 0 0 1.6rem;
+    color: #4a4465;
+    line-height: 1.55;
+}
+
+.modal-close {
+    background: var(--ecu-purple);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: #3d1d67;
+}
+
 .local-trust-line {
     margin: 0.75rem 0 0;
     text-align: center;

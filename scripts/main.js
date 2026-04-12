@@ -2,6 +2,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('seller-form');
     const formMessage = document.getElementById('form-message');
     const submitButton = form.querySelector('button[type="submit"]');
+    const successModal = document.getElementById('success-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    // Auto-format phone as (555) 555-5555
+    const phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', function() {
+        const digits = this.value.replace(/\D/g, '').slice(0, 10);
+        let formatted = '';
+        if (digits.length > 0) formatted = '(' + digits.slice(0, 3);
+        if (digits.length >= 4) formatted += ') ' + digits.slice(3, 6);
+        if (digits.length >= 7) formatted += '-' + digits.slice(6, 10);
+        this.value = formatted;
+    });
+
+    modalCloseBtn.addEventListener('click', function() {
+        successModal.hidden = true;
+    });
+
+    successModal.addEventListener('click', function(e) {
+        if (e.target === successModal) successModal.hidden = true;
+    });
     const configuredApiBase = typeof window.SFP_API_BASE_URL === 'string'
         ? window.SFP_API_BASE_URL.trim()
         : '';
@@ -43,9 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Request failed');
             }
 
-            formMessage.textContent = 'Thanks for reaching out. I will contact you soon with next steps.';
-            formMessage.classList.add('success');
             form.reset();
+            successModal.hidden = false;
+            modalCloseBtn.focus();
         } catch (error) {
             formMessage.textContent = 'Could not send your request right now. Please call us directly.';
             formMessage.classList.add('error');
