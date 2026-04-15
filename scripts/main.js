@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.value = formatted;
     });
 
+    // Modal close handlers
     modalCloseBtn.addEventListener('click', function() {
         successModal.hidden = true;
     });
@@ -23,6 +24,14 @@ document.addEventListener('DOMContentLoaded', function() {
     successModal.addEventListener('click', function(e) {
         if (e.target === successModal) successModal.hidden = true;
     });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !successModal.hidden) {
+            successModal.hidden = true;
+        }
+    });
+
+    // Resolve API base URL
     const configuredApiBase = typeof window.SFP_API_BASE_URL === 'string'
         ? window.SFP_API_BASE_URL.trim()
         : '';
@@ -32,32 +41,31 @@ document.addEventListener('DOMContentLoaded', function() {
         : '';
     const apiBaseUrl = (configuredApiBase || localApiBase).replace(/\/$/, '');
     const leadsEndpoint = `${apiBaseUrl}/api/leads`;
-    
+
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
-        
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const address = document.getElementById('address').value.trim();
+
+        const name     = document.getElementById('name').value.trim();
+        const phone    = document.getElementById('phone').value.trim();
+        const address  = document.getElementById('address').value.trim();
         const condition = document.getElementById('condition').value;
+        const timeline = document.getElementById('timeline').value;
 
         formMessage.textContent = '';
         formMessage.className = 'form-message';
 
-        if (!validateForm(name, phone, address, condition)) {
+        if (!validateForm(name, phone, address, condition, timeline)) {
             return;
         }
 
         submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
+        submitButton.textContent = 'Sending…';
 
         try {
             const response = await fetch(leadsEndpoint, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, phone, address, condition })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, address, condition, timeline })
             });
 
             if (!response.ok) {
@@ -68,25 +76,24 @@ document.addEventListener('DOMContentLoaded', function() {
             successModal.hidden = false;
             modalCloseBtn.focus();
         } catch (error) {
-            formMessage.textContent = 'Could not send your request right now. Please call us directly.';
+            formMessage.textContent = 'Could not send your request right now. Please call or text (252) 227-0175 directly.';
             formMessage.classList.add('error');
         } finally {
             submitButton.disabled = false;
-            submitButton.textContent = 'Get My Cash Offer';
+            submitButton.textContent = 'Get My Free Cash Offer →';
         }
     });
 
-    function validateForm(name, phone, address, condition) {
-        if (!name || !phone || !address || !condition) {
+    function validateForm(name, phone, address, condition, timeline) {
+        if (!name || !phone || !address || !condition || !timeline) {
             formMessage.textContent = 'Please fill out all fields before submitting.';
             formMessage.classList.add('error');
             return false;
         }
 
-        // Allow common US phone formats while keeping lightweight front-end validation.
         const phonePattern = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
         if (!phonePattern.test(phone)) {
-            formMessage.textContent = 'Please enter a valid phone number so I can reach you.';
+            formMessage.textContent = 'Please enter a valid 10-digit phone number so I can reach you.';
             formMessage.classList.add('error');
             return false;
         }
