@@ -1,9 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('seller-form');
+    const formSection = document.getElementById('seller-form-section');
     const formMessage = document.getElementById('form-message');
     const submitButton = form.querySelector('button[type="submit"]');
     const successModal = document.getElementById('success-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    const isFormHash = window.location.hash === '#seller-form' || window.location.hash === '#seller-form-section';
+
+    if ((window.location.hash === '' || isFormHash) && formSection) {
+        requestAnimationFrame(function() {
+            formSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+        });
+    }
 
     // Auto-format phone as (555) 555-5555
     const phoneInput = document.getElementById('phone');
