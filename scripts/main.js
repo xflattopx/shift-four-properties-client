@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const isFormHash = window.location.hash === '#seller-form' || window.location.hash === '#seller-form-section';
 
-    if ((window.location.hash === '' || isFormHash) && formSection) {
+    // Only scroll to form when explicitly linked — never auto-scroll on clean page load.
+    // This ensures visitors see the hero headline and humanization content first.
+    if (isFormHash && formSection) {
         requestAnimationFrame(function() {
-            formSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     }
 
