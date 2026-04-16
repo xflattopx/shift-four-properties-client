@@ -29,6 +29,11 @@ body {
     background: var(--paper);
 }
 
+#seller-form,
+#seller-form-section {
+    scroll-margin-top: 4rem;
+}
+
 /* =====================================================
    PHONE BAR (sticky top)
    ===================================================== */
