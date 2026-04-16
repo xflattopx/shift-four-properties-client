@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREVIEW — ENC Local Home Buyer | enchomeoffers.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+/* =====================================================
+   SHIFT FOUR PROPERTIES — ENCHOMEOFFERS.COM
+   Main Stylesheet
+   ===================================================== */
+
+:root {
+    --ecu-purple: #592a8a;
+    --ecu-purple-dark: #3d1d67;
+    --ecu-gold: #f3c241;
+    --ink: #1b1830;
+    --paper: #f6f4fb;
+    --card: #ffffff;
+    --soft-line: #e0d6f0;
+    --cta-green: #0a9a62;
+    --cta-green-hover: #078453;
+    --success: #0f6a48;
+    --danger: #8e1d1d;
+    --step-bg: #f0eaf9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+}
+
+/* PHONE BAR */
+.phone-bar {
+    background: var(--ecu-purple-dark);
+    color: #e8deff;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.phone-bar-link {
+    color: var(--ecu-gold);
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+
+/* UTILITIES */
+.wrap {
+    width: min(760px, 92vw);
+    margin: 0 auto;
+}
+.section-sub {
+    margin: 0.4rem 0 1.6rem;
+    color: #5a4e75;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    padding: 2.8rem 1rem 3rem;
+    background: linear-gradient(150deg, #5d2b93 0%, #3d1d67 100%);
+}
+.hero-inner {
+    max-width: min(1060px, 94vw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+.hero-text {
+    color: #fff;
+    text-align: center;
+}
+.hero-form { scroll-margin-top: 4.5rem; }
+
+.eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.77rem;
+    color: var(--ecu-gold);
+    font-weight: 700;
+}
+h1 {
+    margin: 0.55rem 0 0;
+    font-family: 'Public Sans', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 6.5vw, 3.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #fff;
+}
+.subheadline {
+    margin: 0.9rem auto 0;
+    max-width: 38rem;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #eee8ff;
+}
+
+/* TRUST BAR */
+.trust-bar {
+    margin-top: 1.4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: left;
+    backdrop-filter: blur(4px);
+}
+.trust-icon {
+    color: var(--ecu-gold);
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+/* FORM CARD */
+.form-card {
+    background: var(--card);
+    border: 1px solid var(--soft-line);
+    border-radius: 1.2rem;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+    padding: 1.6rem 1.4rem;
+}
+h2 {
+    margin: 0;
+    color: #2f2150;
+    font-size: 1.45rem;
+    font-family: 'Bebas Neue', 'Public Sans', sans-serif;
+    letter-spacing: 0.03em;
+}
+.form-subtitle {
+    margin: 0.35rem 0 0.9rem;
+    color: #564a6f;
+    font-size: 0.95rem;
+}
+label {
+    display: block;
+    margin: 0.7rem 0 0.28rem;
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: #2f2150;
+}
+input[type="text"],
+input[type="tel"],
+select {
+    width: 100%;
+    border: 1.5px solid #cfc3e2;
+    border-radius: 0.6rem;
+    font: inherit;
+    padding: 0.75rem;
+    background: #fff;
+    color: var(--ink);
+    transition: border-color 120ms;
+}
+select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #5f3a8f 50%), linear-gradient(135deg, #5f3a8f 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    background-color: #fff;
+}
+input:focus, select:focus {
+    border-color: var(--ecu-purple);
+    outline: 3px solid rgba(89,42,138,0.18);
+    outline-offset: 0;
+}
+.phone-micro {
+    margin: 0.25rem 0 0;
+    font-size: 0.8rem;
+    color: #7a6e8e;
+    font-style: italic;
+}
+button[type="submit"] {
+    margin-top: 1rem;
+    width: 100%;
+    background: var(--cta-green);
+    color: #fff;
+    border: none;
+    border-radius: 0.8rem;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color 120ms ease, transform 120ms ease;
+}
+button[type="submit"]:hover { background: var(--cta-green-hover); transform: translateY(-1px); }
+.form-message { min-height: 1.35rem; margin-top: 0.65rem; font-weight: 600; font-size: 0.9rem; }
+.privacy-line { margin: 0.75rem 0 0; font-size: 0.82rem; color: #5a5070; text-align: center; }
+
+/* HOW IT WORKS */
+.how-it-works { padding: 3rem 0 2rem; text-align: center; }
+.how-it-works h2 { font-size: 2rem; }
+.steps { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 1.4rem; }
+.step {
+    background: var(--card);
+    border: 1px solid var(--soft-line);
+    border-radius: 1rem;
+    padding: 1.4rem 1.2rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(56,40,88,0.08);
+}
+.step-num {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--ecu-purple);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    line-height: 48px;
+    margin: 0 auto 0.8rem;
+}
+.step h3 { margin: 0 0 0.5rem; color: #2f2150; font-size: 1.05rem; }
+.step p { margin: 0; font-size: 0.95rem; color: #4a4063; line-height: 1.55; }
+.step-connector { width: 2px; height: 32px; background: var(--ecu-purple); opacity: 0.3; }
+
+/* COMPARISON TABLE */
+.comparison { padding: 2rem 0 2.5rem; text-align: center; }
+.comparison h2 { font-size: 2rem; }
+.compare-table-wrap { overflow-x: auto; margin-top: 1.2rem; border-radius: 1rem; box-shadow: 0 4px 18px rgba(56,40,88,0.1); }
+.compare-table { width: 100%; border-collapse: collapse; background: var(--card); font-size: 0.93rem; min-width: 480px; }
+.compare-table th { padding: 0.9rem 1rem; font-weight: 700; font-size: 0.95rem; border-bottom: 2px solid var(--soft-line); background: var(--step-bg); }
+.compare-table th:first-child { text-align: left; }
+.compare-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--soft-line); vertical-align: middle; }
+.compare-table td:first-child { font-weight: 600; color: #3a2f55; }
+.compare-table tr:last-child td { border-bottom: none; }
+.col-us { background: rgba(10,154,98,0.06); color: #1b1830; text-align: center; }
+.col-agent { text-align: center; color: #4a4063; }
+.compare-table th.col-us { color: var(--cta-green); background: rgba(10,154,98,0.08); }
+.compare-table th.col-agent { color: #6b5f8a; }
+.good { color: var(--cta-green); font-weight: 700; }
+.bad { color: #7a5f50; }
+
+/* TESTIMONIALS */
+.testimonials { padding: 2.5rem 0; text-align: center; }
+.testimonials h2 { font-size: 2rem; }
+.testimonial-grid { display: grid; gap: 1rem; margin-top: 1.2rem; }
+.testimonial-card {
+    background: var(--card);
+    border: 1px solid var(--soft-line);
+    border-left: 4px solid var(--ecu-purple);
+    border-radius: 0.9rem;
+    padding: 1.3rem 1.2rem;
+    margin: 0;
+    text-align: left;
+    box-shadow: 0 4px 14px rgba(56,40,88,0.08);
+}
+.testimonial-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba(10,154,98,0.10);
+    color: #0a7a4e;
+    border: 1px solid rgba(10,154,98,0.25);
+    border-radius: 99px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+.testimonial-location { font-size: 0.78rem; color: #7a6e8e; font-weight: 600; }
+.testimonial-card p { margin: 0 0 0.75rem; font-size: 0.97rem; color: #3a3258; line-height: 1.6; font-style: italic; }
+.testimonial-card cite { font-size: 0.85rem; font-weight: 700; color: var(--ecu-purple); font-style: normal; }
+
+/* WHO WE HELP */
+.who-we-help { padding: 2.5rem 0; text-align: center; }
+.who-we-help h2 { font-size: 2rem; }
+.situations-grid { display: grid; gap: 1rem; margin-top: 1.2rem; grid-template-columns: 1fr; }
+.situation-card { background: var(--card); border: 1px solid var(--soft-line); border-radius: 0.9rem; padding: 1.2rem; text-align: left; box-shadow: 0 4px 14px rgba(56,40,88,0.07); }
+.situation-icon { font-size: 1.8rem; display: block; margin-bottom: 0.5rem; }
+.situation-card h3 { margin: 0 0 0.4rem; font-size: 1rem; color: #2f2150; }
+.situation-card p { margin: 0; font-size: 0.9rem; color: #4a4063; line-height: 1.55; }
+
+/* FAQ */
+.faq { padding: 2.5rem 0 2rem; }
+.faq h2 { font-size: 2rem; text-align: center; margin-bottom: 1.2rem; }
+.faq-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.faq-item { background: var(--card); border: 1px solid var(--soft-line); border-radius: 0.8rem; padding: 0 1rem; box-shadow: 0 2px 8px rgba(56,40,88,0.06); }
+.faq-item summary { font-weight: 700; cursor: pointer; padding: 1rem 0; color: #2f2150; font-size: 0.97rem; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 1.3rem; font-weight: 400; color: var(--ecu-purple); flex-shrink: 0; margin-left: 1rem; }
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p { margin: 0 0 1rem; font-size: 0.93rem; color: #4a4063; line-height: 1.6; }
+
+/* CTA BANNER */
+.cta-banner { background: linear-gradient(135deg, #3d1d67 0%, #5d2b93 100%); padding: 3rem 1rem; text-align: center; margin-top: 1rem; }
+.cta-banner h2 { color: #fff; font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 5vw, 2.4rem); margin: 0 0 0.6rem; letter-spacing: -0.01em; }
+.cta-banner p { color: #ddd0ff; margin: 0 auto 1.6rem; font-size: 1rem; max-width: 500px; line-height: 1.6; }
+.cta-banner-buttons { display: flex; flex-direction: column; gap: 0.75rem; align-items: center; }
+.btn-primary { display: inline-block; padding: 0.95rem 1.8rem; background: var(--cta-green); color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 0.8rem; box-shadow: 0 8px 20px rgba(7,47,32,0.3); transition: background 120ms, transform 120ms; }
+.btn-primary:hover { background: var(--cta-green-hover); transform: translateY(-2px); }
+.btn-secondary { display: inline-block; padding: 0.95rem 1.8rem; background: transparent; color: var(--ecu-gold); text-decoration: none; font-weight: 700; font-size: 1.05rem; border-radius: 0.8rem; border: 2px solid var(--ecu-gold); transition: background 120ms; }
+.btn-secondary:hover { background: rgba(243,194,65,0.12); }
+
+/* FOOTER */
+.site-footer { background: #1a0e33; color: #a898c4; padding: 2rem 1rem; text-align: center; font-size: 0.88rem; }
+.site-footer p { margin: 0.4rem 0; line-height: 1.5; }
+.site-footer strong { color: #fff; }
+
+/* SUCCESS MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(27,24,48,0.75); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
+.modal-overlay[hidden] { display: none; }
+.modal-box { background: #fff; border-radius: 16px; padding: 2.4rem 2rem; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 8px 40px rgba(89,42,138,0.22); }
+.modal-check { width: 64px; height: 64px; border-radius: 50%; background: var(--cta-green); color: #fff; font-size: 2.2rem; line-height: 64px; margin: 0 auto 1.1rem; }
+.modal-box h2 { margin: 0 0 0.5rem; font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--ink); }
+.modal-box > p { margin: 0 0 0.5rem; color: #4a4465; line-height: 1.55; font-weight: 600; }
+.modal-steps { list-style: none; margin: 0.5rem 0 1rem; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 0.55rem; }
+.modal-steps li { background: var(--step-bg); border-radius: 0.6rem; padding: 0.65rem 0.9rem; font-size: 0.92rem; color: #2f2150; line-height: 1.45; }
+.modal-steps li strong { color: var(--ecu-purple); }
+.modal-sub { font-size: 0.9rem; margin: 0 0 1.4rem; color: #4a4465; }
+.modal-sub a { color: var(--ecu-purple); font-weight: 700; }
+.modal-close { background: var(--ecu-purple); color: #fff; border: none; border-radius: 8px; padding: 0.75rem 2.2rem; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 120ms; }
+.modal-close:hover { background: var(--ecu-purple-dark); }
+
+/* RESPONSIVE — 560px */
+@media (min-width: 560px) {
+    .situations-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-banner-buttons { flex-direction: row; justify-content: center; }
+}
+
+/* RESPONSIVE — 700px */
+@media (min-width: 700px) {
+    .steps { flex-direction: row; align-items: stretch; justify-content: center; gap: 0; }
+    .step { flex: 1; max-width: 220px; }
+    .step-connector { width: 40px; height: 2px; align-self: center; flex-shrink: 0; }
+    .form-card { padding: 1.8rem 2rem; }
+    .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+    .situations-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* RESPONSIVE — 860px two-column hero */
+@media (min-width: 860px) {
+    .hero { padding: 4rem 1.5rem 4rem; }
+    .hero-inner { grid-template-columns: 1fr 400px; gap: 3rem; align-items: center; }
+    .hero-text { text-align: left; }
+    .subheadline { margin: 0.9rem 0 0; max-width: none; }
+    .trust-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* RESPONSIVE — 1060px */
+@media (min-width: 1060px) {
+    .hero-inner { grid-template-columns: 1fr 440px; gap: 4rem; }
+}
+
+/* PREVIEW BANNER */
+.preview-banner {
+    background: var(--ecu-gold);
+    color: #1a0e33;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Preview notice -->
+    <div class="preview-banner">⚠️ PREVIEW MODE — enchomeoffers.com front-end layout</div>
+
+    <!-- STICKY PHONE BAR -->
+    <div class="phone-bar">
+        <span>Questions? I'm Chase — call or text:</span>
+        <a href="tel:+12522270175" class="phone-bar-link">(252) 227-0175</a>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <p class="eyebrow">Local Cash Home Buyer &nbsp;•&nbsp; Eastern NC &nbsp;•&nbsp; enchomeoffers.com</p>
+                <h1>Sell Your Eastern NC House Fast.<br>Any Condition. Zero Fees.</h1>
+                <p class="subheadline">I'm Chase — a local home buyer based right here in Eastern NC. Fill out the form and I'll personally reach out with a fair cash offer, usually within 24 hours.</p>
+                <section class="trust-bar" aria-label="Trust signals">
+                    <div class="trust-item"><span class="trust-icon">✓</span><span>Cash offer in 24–48 hrs</span></div>
+                    <div class="trust-item"><span class="trust-icon">✓</span><span>No repairs or cleaning</span></div>
+                    <div class="trust-item"><span class="trust-icon">✓</span><span>Zero realtor fees</span></div>
+                    <div class="trust-item"><span class="trust-icon">✓</span><span>Local buyer, not a call center</span></div>
+                </section>
+            </div>
+            <div class="hero-form" id="seller-form-section">
+                <div class="form-card" aria-labelledby="form-title">
+                    <h2 id="form-title">Get Your Free Cash Offer</h2>
+                    <p class="form-subtitle">Takes 60 seconds. No obligation. I'm Chase — I follow up personally, usually same day.</p>
+                    <form id="seller-form" novalidate>
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Smith">
+
+                        <label for="phone">Best Phone Number</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(252) 555-5555" maxlength="14">
+                        <p class="phone-micro">No spam — I text once to confirm.</p>
+
+                        <label for="address">Property Address</label>
+                        <input type="text" id="address" name="address" autocomplete="street-address" placeholder="123 Main St, Greenville NC">
+
+                        <label for="condition">Property Condition</label>
+                        <select id="condition" name="condition">
+                            <option value="" selected disabled>Select one</option>
+                            <option>Move-in ready</option>
+                            <option>Needs cosmetic updates</option>
+                            <option>Needs major repairs</option>
+                            <option>Severely distressed / damaged</option>
+                        </select>
+
+                        <label for="timeline">How soon do you need to sell?</label>
+                        <select id="timeline" name="timeline">
+                            <option value="" selected disabled>Select one</option>
+                            <option>ASAP — I need to sell now</option>
+                            <option>Within 1–3 months</option>
+                            <option>3–6 months</option>
+                            <option>Just exploring my options</option>
+                        </select>
+
+                        <button type="submit" onclick="event.preventDefault(); document.getElementById('success-modal').hidden=false;">See What My Property's Worth →</button>
+                        <p id="form-message" class="form-message"></p>
+                    </form>
+                    <p class="privacy-line">🔒 Your info is private. I never share or sell it.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HOW IT WORKS -->
+        <section class="how-it-works wrap">
+            <h2>How It Works</h2>
+            <p class="section-sub">From form to cash offer in under 48 hours. Here's exactly what happens.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Tell Me About Your Property</h3>
+                    <p>Fill out the short form above (takes 60 seconds). No need to clean, repair, or stage anything beforehand.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Receive Your Cash Offer</h3>
+                    <p>I — Chase — will review your property and follow up personally with a fair, no-obligation cash offer, usually within 24 to 48 hours.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Pick Your Closing Date</h3>
+                    <p>You choose when we close. It can be as fast as 7 days, or we can work around your schedule. You stay in control.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON TABLE -->
+        <section class="comparison wrap">
+            <h2>Cash Sale vs. Listing With an Agent</h2>
+            <p class="section-sub">See why Eastern NC sellers choose a direct cash sale.</p>
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">What You Get</th>
+                            <th scope="col" class="col-us">Sell to Us</th>
+                            <th scope="col" class="col-agent">List With Agent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Cash offer timeline</td><td class="col-us good">24–48 hours</td><td class="col-agent bad">30–90+ days</td></tr>
+                        <tr><td>Repairs or cleaning required</td><td class="col-us good">None — sell AS-IS</td><td class="col-agent bad">Usually required</td></tr>
+                        <tr><td>Realtor commissions &amp; fees</td><td class="col-us good">$0</td><td class="col-agent bad">5–6% of sale price</td></tr>
+                        <tr><td>Closing costs</td><td class="col-us good">We cover them</td><td class="col-agent bad">Typically seller-paid</td></tr>
+                        <tr><td>Risk of deal falling through</td><td class="col-us good">None — cash is certain</td><td class="col-agent bad">15–30% of deals fall</td></tr>
+                        <tr><td>Showings &amp; open houses</td><td class="col-us good">Zero</td><td class="col-agent bad">Multiple, on their schedule</td></tr>
+                        <tr><td>Close date flexibility</td><td class="col-us good">You pick the date</td><td class="col-agent bad">Buyer-driven timeline</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="testimonials wrap">
+            <h2>What Sellers Are Saying</h2>
+            <p class="section-sub">Real words from real Eastern NC homeowners.</p>
+            <div class="testimonial-grid">
+                <blockquote class="testimonial-card">
+                    <div class="testimonial-meta">
+                        <span class="verified-badge">&#10003; Verified Seller</span>
+                        <span class="testimonial-location">Greenville, NC · March 2026</span>
+                    </div>
+                    <p>"I inherited a property in Greenville that needed a lot of work. I didn't want the hassle of listing it and doing repairs. The process was simple, the offer was fair, and we closed in under two weeks."</p>
+                    <cite>— Sandra M.</cite>
+                </blockquote>
+                <blockquote class="testimonial-card">
+                    <div class="testimonial-meta">
+                        <span class="verified-badge">&#10003; Verified Seller</span>
+                        <span class="testimonial-location">Kinston, NC · February 2026</span>
+                    </div>
+                    <p>"My tenant stopped paying and I was tired of being a landlord. I called, got an offer the next day, and closed on my timeline. No drama, no agents, no fees. Exactly what I needed."</p>
+                    <cite>— Marcus T.</cite>
+                </blockquote>
+                <blockquote class="testimonial-card">
+                    <div class="testimonial-meta">
+                        <span class="verified-badge">&#10003; Verified Seller</span>
+                        <span class="testimonial-location">Washington, NC · January 2026</span>
+                    </div>
+                    <p>"I was behind on payments and scared. Within 48 hours I had an offer and a plan. It was a huge weight off my shoulders. I wish I had called sooner."</p>
+                    <cite>— D. Williamson</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- WHO WE HELP -->
+        <section class="who-we-help wrap">
+            <h2>Common Situations We Help With</h2>
+            <div class="situations-grid">
+                <div class="situation-card"><span class="situation-icon">🏚️</span><h3>Damaged or Outdated Property</h3><p>Don't spend money on repairs. We buy it exactly as it sits — roof problems, foundation issues, and all.</p></div>
+                <div class="situation-card"><span class="situation-icon">📋</span><h3>Inherited Property / Probate</h3><p>Going through probate or managing an inherited property is stressful enough. We make the sale simple and fast.</p></div>
+                <div class="situation-card"><span class="situation-icon">⚠️</span><h3>Facing Foreclosure</h3><p>If you're behind on payments, time matters. A cash sale can stop foreclosure and protect your credit.</p></div>
+                <div class="situation-card"><span class="situation-icon">🔑</span><h3>Tired Landlords</h3><p>Done dealing with tenants, maintenance calls, and vacancies? We buy tenant-occupied properties too.</p></div>
+                <div class="situation-card"><span class="situation-icon">📦</span><h3>Relocating or Downsizing</h3><p>Life changes fast. If you need to move on quickly, we can close on your schedule — even in 7 days.</p></div>
+                <div class="situation-card"><span class="situation-icon">🤝</span><h3>Divorce or Major Life Event</h3><p>A fast, clean sale removes one major stressor from an already difficult situation.</p></div>
+                <div class="situation-card"><span class="situation-icon">🏘️</span><h3>Out-of-State or Absentee Owner</h3><p>You don't need to fly in to sell. I handle everything locally — you sign remotely and we close on your schedule.</p></div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq wrap">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <details class="faq-item"><summary>Are you a real local buyer or a big company?</summary><p>I'm a local real estate investor based in Eastern North Carolina — not a national call center or a franchise. When you fill out the form, you're talking directly with me. No runaround, no middle man.</p></details>
+                <details class="faq-item"><summary>Is your cash offer really free and no-obligation?</summary><p>Yes, completely. There's no cost to get an offer, and you're under zero obligation to accept it. I'll give you my best number and let you decide what's right for you.</p></details>
+                <details class="faq-item"><summary>How fast can you actually close?</summary><p>In most cases, we can close in as few as 7–14 days. If you need more time — for moving, settling an estate, or other reasons — that's fine too. We work on your timeline.</p></details>
+                <details class="faq-item"><summary>Do I need to make any repairs before selling?</summary><p>Absolutely not. We buy properties in any condition — fire damage, flood damage, bad roofs, foundation issues, full of stuff. You don't need to lift a finger before closing.</p></details>
+                <details class="faq-item"><summary>How do I know your offer is fair?</summary><p>I base every offer on recent comparable sales in your specific Eastern NC neighborhood, factored against the repairs I'll need to make. I'll show you the comparable sales I used when I present the offer — no black box, no mystery number. You can take it to anyone you trust to verify.</p></details>
+                <details class="faq-item"><summary>What areas in Eastern NC do you buy in?</summary><p>I focus on Greenville, Winterville, Washington, New Bern, Kinston, Farmville, Ayden, Grimesland, and surrounding Pitt, Beaufort, Craven, and Lenoir counties. If you're nearby, reach out anyway — I may still be able to help.</p></details>
+                <details class="faq-item"><summary>Will you lowball me?</summary><p>I make honest, research-backed offers based on real comparable sales in your area. My offer factors in the property's condition and the repairs I'll need to put in. I won't waste your time with an insulting number — and I won't pressure you to accept.</p></details>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <section class="cta-banner">
+            <div class="wrap">
+                <h2>Still on the fence? That's okay.</h2>
+                <p>Get the offer first. Decide later. There's zero pressure and zero obligation — I'll give you a fair number and let you think about it on your own time.</p>
+                <div class="cta-banner-buttons">
+                    <a class="btn-primary" href="#seller-form-section">Get My Cash Offer →</a>
+                    <a class="btn-secondary" href="tel:+12522270175">Call (252) 227-0175</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p><strong>Chase — Shift Four Properties</strong> &nbsp;|&nbsp; enchomeoffers.com &nbsp;|&nbsp; (252) 227-0175</p>
+            <p>Serving Eastern North Carolina homeowners in Pitt, Beaufort, Craven, Lenoir &amp; surrounding counties.</p>
+        </div>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div id="success-modal" class="modal-overlay" role="dialog" aria-modal="true" hidden>
+        <div class="modal-box">
+            <div class="modal-check">&#10003;</div>
+            <h2>You're All Set!</h2>
+            <p>Here's what happens next:</p>
+            <ol class="modal-steps">
+                <li><strong>Step 1:</strong> I've received your info — reviewing it now.</li>
+                <li><strong>Step 2:</strong> I'll reach out by phone or text within a few hours.</li>
+                <li><strong>Step 3:</strong> We'll have a quick 10-minute call to talk through your property.</li>
+            </ol>
+            <p class="modal-sub">Questions right now? Text me: <a href="tel:+12522270175">(252) 227-0175</a></p>
+            <button class="modal-close" onclick="document.getElementById('success-modal').hidden=true;">Got It</button>
+        </div>
+    </div>
+
+</body>
+</html>
