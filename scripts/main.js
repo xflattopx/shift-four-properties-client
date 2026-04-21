@@ -121,6 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 timeline: timeline
             });
 
+            // Also fire CompleteRegistration for ad sets that were published against
+            // that event (FB locks the conversion event on published ad sets, so we
+            // fire both so legacy ad sets keep getting credit alongside new Lead-
+            // optimized ones). Safe to remove once all ad sets are migrated to Lead.
+            trackFbEvent('CompleteRegistration', {
+                content_name: 'Seller Cash Offer Request',
+                status: 'completed',
+                value: 25.00,
+                currency: 'USD',
+                property_condition: condition,
+                timeline: timeline
+            });
+
             form.reset();
             successModal.hidden = false;
             modalCloseBtn.focus();
