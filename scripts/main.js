@@ -53,6 +53,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const apiBaseUrl = (configuredApiBase || localApiBase).replace(/\/$/, '');
     const leadsEndpoint = `${apiBaseUrl}/api/leads`;
 
+    // Safe wrapper for Facebook Pixel — never breaks the page if fbq is blocked/unloaded.
+    function trackFbEvent(eventName, params) {
+        try {
+            if (typeof window.fbq === 'function') {
+                window.fbq('track', eventName, params || {});
+            }
+        } catch (err) {
+            // Silently ignore — tracking must never interrupt the user flow.
+        }
+    }
+
+    // Fire a "lead intent" signal as soon as the user clicks the CTA button,
+    // BEFORE validation. This gives Facebook a higher-volume signal to learn
+    // from even when the submit ultimately fails. Dedup via eventID so it
+    // doesn't double-count with the Lead event on successful submit.
+    submitButton.addEventListener('click', function() {
+        try {
+            if (typeof window.fbq === 'function') {
+                window.fbq('trackCustom', 'PropertyValueRequested', {
+                    content_name: 'See What My Property\u2019s Worth',
+                    content_category: 'Seller Lead Form'
+                });
+            }
+        } catch (err) { /* no-op */ }
+    });
+
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
@@ -83,6 +109,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Request failed');
             }
 
+            // ✅ Primary Facebook conversion event — fires ONLY after the lead
+            // successfully reaches the API. This is what FB Ads optimizes against.
+            trackFbEvent('Lead', {
+                content_name: 'Seller Cash Offer Request',
+                content_category: 'Motivated Seller Lead',
+                value: 25.00,          // Estimated lead value for optimization weighting
+                currency: 'USD',
+                lead_type: 'seller',
+                property_condition: condition,
+                timeline: timeline
+            });
+
             form.reset();
             successModal.hidden = false;
             modalCloseBtn.focus();
@@ -91,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formMessage.classList.add('error');
         } finally {
             submitButton.disabled = false;
-            submitButton.textContent = 'Get My Free Cash Offer →';
+            submitButton.textContent = 'See What My Property\u2019s Worth \u2192';
         }
     });
 
