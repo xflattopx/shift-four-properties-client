@@ -6,6 +6,58 @@ document.addEventListener('DOMContentLoaded', function() {
     const successModal = document.getElementById('success-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
 
+    // ---- UTM / Attribution capture -------------------------------------------------
+    // Read UTM params from the URL on first landing, persist to sessionStorage,
+    // and hydrate the hidden form fields so every lead carries its source context
+    // even if the visitor browses, opens FAQs, or returns through an anchor link.
+    const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    const UTM_STORAGE_KEY = 'sfp_attribution_v1';
+
+    function captureAttribution() {
+        let stored = {};
+        try {
+            stored = JSON.parse(sessionStorage.getItem(UTM_STORAGE_KEY) || '{}');
+        } catch (err) { stored = {}; }
+
+        const params = new URLSearchParams(window.location.search);
+        let updated = false;
+        UTM_KEYS.forEach(function(key) {
+            const fromUrl = params.get(key);
+            if (fromUrl && fromUrl.trim()) {
+                stored[key] = fromUrl.trim().slice(0, 120); // cap length defensively
+                updated = true;
+            }
+        });
+
+        // First-touch landing page + referrer — only set once per session.
+        if (!stored.landing_page) {
+            stored.landing_page = window.location.href.slice(0, 500);
+            updated = true;
+        }
+        if (!stored.referrer && document.referrer) {
+            stored.referrer = document.referrer.slice(0, 500);
+            updated = true;
+        }
+
+        if (updated) {
+            try { sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(stored)); } catch (err) { /* no-op */ }
+        }
+
+        // Hydrate hidden form fields
+        UTM_KEYS.forEach(function(key) {
+            const input = document.getElementById(key);
+            if (input && stored[key]) input.value = stored[key];
+        });
+        const landingInput  = document.getElementById('landing_page');
+        const referrerInput = document.getElementById('referrer');
+        if (landingInput && stored.landing_page) landingInput.value = stored.landing_page;
+        if (referrerInput && stored.referrer)    referrerInput.value = stored.referrer;
+
+        return stored;
+    }
+
+    const attribution = captureAttribution();
+
     const isFormHash = window.location.hash === '#seller-form' || window.location.hash === '#seller-form-section';
 
     // Only scroll to form when explicitly linked — never auto-scroll on clean page load.
@@ -88,6 +140,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const condition = document.getElementById('condition').value;
         const timeline = document.getElementById('timeline').value;
 
+        // Pull latest attribution snapshot at submit time (survives SPA-like nav).
+        const attr = captureAttribution();
+
         formMessage.textContent = '';
         formMessage.className = 'form-message';
 
@@ -102,7 +157,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch(leadsEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phone, address, condition, timeline })
+                body: JSON.stringify({
+                    name, phone, address, condition, timeline,
+                    utm_source:   attr.utm_source   || '',
+                    utm_medium:   attr.utm_medium   || '',
+                    utm_campaign: attr.utm_campaign || '',
+                    utm_content:  attr.utm_content  || '',
+                    utm_term:     attr.utm_term     || '',
+                    landing_page: attr.landing_page || '',
+                    referrer:     attr.referrer     || ''
+                })
             });
 
             if (!response.ok) {
@@ -118,7 +182,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 currency: 'USD',
                 lead_type: 'seller',
                 property_condition: condition,
-                timeline: timeline
+                timeline: timeline,
+                utm_campaign: attr.utm_campaign || '',
+                utm_content:  attr.utm_content  || '',
+                utm_source:   attr.utm_source   || ''
             });
 
             // Also fire CompleteRegistration for ad sets that were published against
