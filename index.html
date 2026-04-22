@@ -55,6 +55,16 @@ fbq('track', 'PageView');
                     <p class="form-subtitle">Takes 60 seconds. No obligation. I'm Chase — I follow up personally, usually same day.</p>
                     <form id="seller-form" novalidate>
 
+                        <!-- Hidden attribution fields — populated from URL UTMs on load.
+                             Never shown to the user; used server-side for lead source tracking. -->
+                        <input type="hidden" id="utm_source"   name="utm_source"   value="">
+                        <input type="hidden" id="utm_medium"   name="utm_medium"   value="">
+                        <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+                        <input type="hidden" id="utm_content"  name="utm_content"  value="">
+                        <input type="hidden" id="utm_term"     name="utm_term"     value="">
+                        <input type="hidden" id="landing_page" name="landing_page" value="">
+                        <input type="hidden" id="referrer"     name="referrer"     value="">
+
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Smith" required>
 
