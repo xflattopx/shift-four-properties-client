@@ -94,6 +94,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // ---- BUTTON-CHIP SELECTION -----------------------------------------------------
+    // Replaces native <select> dropdowns with thumb-friendly tap targets. Each chip
+    // group writes its selected value to a hidden input (#condition or #timeline)
+    // so the submit handler and API contract remain identical.
+    form.querySelectorAll('.chip-group').forEach(function(group) {
+        const targetId = group.getAttribute('data-target');
+        const hiddenInput = document.getElementById(targetId);
+        const chips = Array.from(group.querySelectorAll('.chip'));
+
+        chips.forEach(function(chip) {
+            chip.addEventListener('click', function() {
+                chips.forEach(function(c) { c.classList.remove('is-selected'); });
+                chip.classList.add('is-selected');
+                if (hiddenInput) hiddenInput.value = chip.getAttribute('data-value') || '';
+                // Clear any prior validation error inline
+                if (formMessage) {
+                    formMessage.textContent = '';
+                    formMessage.className = 'form-message';
+                }
+            });
+        });
+    });
+
     // Resolve API base URL
     const configuredApiBase = typeof window.SFP_API_BASE_URL === 'string'
         ? window.SFP_API_BASE_URL.trim()
@@ -124,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             if (typeof window.fbq === 'function') {
                 window.fbq('trackCustom', 'PropertyValueRequested', {
-                    content_name: 'See What My Property\u2019s Worth',
+                    content_name: 'Send Me My Cash Offer',
                     content_category: 'Seller Lead Form'
                 });
             }
@@ -134,11 +157,11 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        const name     = document.getElementById('name').value.trim();
-        const phone    = document.getElementById('phone').value.trim();
-        const address  = document.getElementById('address').value.trim();
+        const name      = document.getElementById('name').value.trim();
+        const phone     = document.getElementById('phone').value.trim();
+        const address   = document.getElementById('address').value.trim();
         const condition = document.getElementById('condition').value;
-        const timeline = document.getElementById('timeline').value;
+        const timeline  = document.getElementById('timeline').value;
 
         // Pull latest attribution snapshot at submit time (survives SPA-like nav).
         const attr = captureAttribution();
@@ -201,7 +224,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 timeline: timeline
             });
 
+            // Reset form fields AND chip selections for a clean slate.
             form.reset();
+            form.querySelectorAll('.chip.is-selected').forEach(function(c) {
+                c.classList.remove('is-selected');
+            });
+            document.getElementById('condition').value = '';
+            document.getElementById('timeline').value  = '';
+
             successModal.hidden = false;
             modalCloseBtn.focus();
         } catch (error) {
@@ -209,20 +239,40 @@ document.addEventListener('DOMContentLoaded', function() {
             formMessage.classList.add('error');
         } finally {
             submitButton.disabled = false;
-            submitButton.textContent = 'See What My Property\u2019s Worth \u2192';
+            submitButton.textContent = 'Send Me My Cash Offer →';
         }
     });
 
     function validateForm(name, phone, address, condition, timeline) {
-        if (!name || !phone || !address || !condition || !timeline) {
-            formMessage.textContent = 'Please fill out all fields before submitting.';
+        if (!address) {
+            formMessage.textContent = 'I’ll need the property address to pull comps.';
+            formMessage.classList.add('error');
+            return false;
+        }
+        if (!condition) {
+            formMessage.textContent = 'Pick a condition so I can sharpen the offer.';
+            formMessage.classList.add('error');
+            return false;
+        }
+        if (!timeline) {
+            formMessage.textContent = 'Let me know your timeline so I can match the offer to it.';
+            formMessage.classList.add('error');
+            return false;
+        }
+        if (!name) {
+            formMessage.textContent = 'A first name works — what should I call you?';
+            formMessage.classList.add('error');
+            return false;
+        }
+        if (!phone) {
+            formMessage.textContent = 'I’ll need a number to text the offer to.';
             formMessage.classList.add('error');
             return false;
         }
 
         const phonePattern = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
         if (!phonePattern.test(phone)) {
-            formMessage.textContent = 'Please enter a valid 10-digit phone number so I can reach you.';
+            formMessage.textContent = 'Please enter a valid 10-digit phone number so I can text you the offer.';
             formMessage.classList.add('error');
             return false;
         }
