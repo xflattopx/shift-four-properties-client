@@ -839,6 +839,11 @@ button[type="submit"]:focus-visible {
         gap: 0.85rem;
     }
 
+    /* Show form first on mobile — reduces scroll friction */
+    .hero-form {
+        order: -1;
+    }
+
     /* Eyebrow: smaller, tighter */
     .eyebrow {
         font-size: 0.68rem;
@@ -1057,3 +1062,716 @@ button[type="submit"]:focus-visible {
         gap: 4rem;
     }
 }
+
+/* =====================================================
+   V2 — ANTI-COMPETITOR FUNNEL ADDITIONS
+   (hero trust bar, pledge, meet-chase, realtor-vs-buyer)
+   ===================================================== */
+
+/* Hero trust bar — 4 big numbers right under the subheadline */
+.hero-trust {
+    list-style: none;
+    padding: 0;
+    margin: 1.4rem 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+.hero-trust li {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(243,194,65,0.25);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.ht-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--ecu-gold);
+    letter-spacing: 0.02em;
+}
+.ht-label {
+    font-size: 0.82rem;
+    color: #e8deff;
+    margin-top: 0.2rem;
+    font-weight: 600;
+}
+@media (min-width: 760px) {
+    .hero-trust { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Hero anti-competitor micro-pledge */
+.hero-pledge {
+    margin: 0.6rem 0 0;
+    padding: 0.7rem 0.9rem;
+    background: rgba(10,154,98,0.12);
+    border-left: 3px solid var(--cta-green);
+    border-radius: 6px;
+    color: #e8deff;
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+.hero-pledge strong { color: #fff; }
+.pledge-check {
+    display: inline-block;
+    color: var(--cta-green);
+    font-weight: 900;
+    margin-right: 0.4rem;
+}
+
+/* Form card — urgency pill + field help + what-happens-next list */
+.form-urgency {
+    display: inline-block;
+    background: var(--cta-green);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+}
+.field-help {
+    font-weight: 400;
+    color: #6a5f82;
+    font-size: 0.82rem;
+}
+.next-steps {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0.6rem;
+    border-top: 1px solid var(--soft-line);
+    padding-top: 0.9rem;
+}
+.next-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: 0.35rem 0;
+    font-size: 0.88rem;
+    color: #3a2f57;
+    line-height: 1.4;
+}
+.ns-num {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--ecu-purple);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+
+/* Meet Chase — owner-operator humanization block */
+.meet-chase {
+    padding: 3rem 0 1rem;
+}
+.meet-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: center;
+}
+.meet-photo {
+    display: flex;
+    justify-content: center;
+}
+.photo-placeholder {
+    width: 100%;
+    max-width: 260px;
+    aspect-ratio: 1;
+    border-radius: 14px;
+    background: var(--step-bg);
+    border: 2px dashed var(--ecu-purple);
+    color: var(--ecu-purple);
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+.ph-sub {
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: #6a5f82;
+}
+.meet-text h2 {
+    margin: 0 0 0.6rem;
+    font-size: 1.55rem;
+    line-height: 1.25;
+    color: var(--ink);
+}
+.meet-text p {
+    margin: 0 0 0.75rem;
+    color: #3a2f57;
+    line-height: 1.55;
+}
+.meet-sig {
+    font-size: 0.9rem;
+    color: #5a4e75;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+.meet-sig a { color: var(--ecu-purple); font-weight: 700; }
+@media (min-width: 760px) {
+    .meet-grid {
+        grid-template-columns: 260px 1fr;
+        gap: 2.4rem;
+    }
+}
+
+/* How-It-Works — small time-commitment chip */
+.step-time {
+    display: inline-block;
+    background: var(--ecu-gold);
+    color: var(--ink);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    letter-spacing: 0.02em;
+}
+
+/* Realtor-vs-Buyer comparison — differentiated visual weight */
+.comparison-vs-realtor {
+    padding-top: 1rem;
+}
+.comparison-vs-realtor .col-us {
+    background: rgba(10,154,98,0.06);
+}
+.comparison-vs-realtor .col-agent {
+    background: rgba(142,29,29,0.04);
+}
+
+/* The Buyer-Only Pledge */
+.pledge {
+    margin: 2.5rem auto;
+}
+.pledge-card {
+    background: linear-gradient(135deg, var(--ecu-purple) 0%, var(--ecu-purple-dark) 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 2rem 1.6rem;
+    box-shadow: 0 8px 28px rgba(61,29,103,0.22);
+    border: 2px solid var(--ecu-gold);
+}
+.pledge-card h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.6rem;
+    color: var(--ecu-gold);
+}
+.pledge-intro {
+    margin: 0 0 1.1rem;
+    color: #e8deff;
+    font-size: 0.98rem;
+}
+.pledge-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem;
+    display: grid;
+    gap: 0.85rem;
+}
+.pledge-list li {
+    background: rgba(255,255,255,0.07);
+    border-left: 3px solid var(--ecu-gold);
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+.pledge-list .pledge-check {
+    color: var(--ecu-gold);
+    font-size: 1.05rem;
+}
+.pledge-sig {
+    margin: 0;
+    font-weight: 700;
+    color: var(--ecu-gold);
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    border-top: 1px solid rgba(243,194,65,0.3);
+    padding-top: 0.9rem;
+}
+@media (min-width: 760px) {
+    .pledge-card { padding: 2.4rem 2rem; }
+    .pledge-list { grid-template-columns: 1fr 1fr; }
+}
+
+/* =====================================================
+   V3 — TRUST TIGHTENING (funnel conversion lift)
+   Changes: urgency dot, trust-strip, form fallback,
+   monogram, sticky mobile CTA bar.
+   ===================================================== */
+
+/* Urgency pill — live dot for "Chase is reviewing today" */
+.form-urgency {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.urgency-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffec9e;
+    box-shadow: 0 0 0 3px rgba(243,194,65,0.35);
+    animation: pulseDot 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+@keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(243,194,65,0.35); opacity: 1; }
+    50%      { box-shadow: 0 0 0 5px rgba(243,194,65,0.10); opacity: 0.85; }
+}
+
+/* "Or text me" fallback CTA under the form button */
+.form-fallback {
+    margin: 0.6rem 0 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #5a4e75;
+    border-top: 1px solid var(--soft-line);
+    padding-top: 0.65rem;
+}
+.form-fallback a {
+    color: var(--ecu-purple);
+    font-weight: 800;
+    text-decoration: none;
+}
+.form-fallback a:hover { text-decoration: underline; }
+
+/* Monogram photo tile — a cleaner "coming soon" than a dashed placeholder */
+.photo-monogram {
+    width: 100%;
+    max-width: 260px;
+    aspect-ratio: 1;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--ecu-purple) 0%, var(--ecu-purple-dark) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    box-shadow: 0 8px 24px rgba(61,29,103,0.22);
+    border: 2px solid var(--ecu-gold);
+    text-align: center;
+    padding: 1.2rem;
+}
+.pm-initials {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--ecu-gold);
+    letter-spacing: 0.06em;
+}
+.pm-caption {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+}
+.pm-caption em {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.78rem;
+    color: #e8deff;
+    margin-top: 0.15rem;
+    letter-spacing: 0.02em;
+}
+
+/* Sticky mobile CTA bar — fixed bottom, two-button call-or-text */
+.mobile-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 120;
+    display: none;  /* default hidden — shown on mobile only */
+    gap: 0.5rem;
+    padding: 0.55rem 0.65rem calc(0.55rem + env(safe-area-inset-bottom));
+    background: rgba(26, 14, 51, 0.97);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 -4px 18px rgba(0,0,0,0.25);
+    border-top: 1px solid rgba(243,194,65,0.25);
+}
+.mcta-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.85rem 0.6rem;
+    border-radius: 0.7rem;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: transform 120ms, background 120ms;
+}
+.mcta-btn:active { transform: scale(0.97); }
+.mcta-call {
+    background: var(--cta-green);
+    color: #fff;
+}
+.mcta-text {
+    background: var(--ecu-gold);
+    color: var(--ecu-purple-dark);
+}
+/* Mobile-only reveal + body padding to avoid overlap */
+@media (max-width: 759px) {
+    .mobile-cta { display: flex; }
+    /* Pad the footer so the bar doesn't cover content */
+    body { padding-bottom: 4.2rem; }
+}
+
+
+/* =====================================================
+   V4 - NET COMPARISON CALCULATOR
+   Interactive tool that keeps sellers on page and
+   answers the "is this really a fair deal" question
+   with their own numbers.
+   ===================================================== */
+.calc {
+    padding: 3rem 1rem 3.2rem;
+}
+.calc-card {
+    max-width: 920px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(61,29,103,0.12);
+    border: 1px solid rgba(89, 42, 138, 0.10);
+    padding: 2.2rem 1.8rem;
+}
+.calc-header { text-align: center; margin-bottom: 1.6rem; }
+.calc-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--ecu-purple);
+    margin: 0 0 0.4rem;
+}
+#calc-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    color: var(--ecu-purple-dark);
+    margin: 0 0 0.55rem;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+}
+.calc-sub {
+    color: #4a3e6a;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.calc-input-row {
+    max-width: 420px;
+    margin: 0 auto 1.6rem;
+    text-align: center;
+}
+.calc-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--ecu-purple-dark);
+    margin-bottom: 0.45rem;
+}
+.calc-input-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+}
+.calc-prefix {
+    position: absolute;
+    left: 14px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--ecu-purple);
+    pointer-events: none;
+}
+#calc-value {
+    width: 100%;
+    padding: 0.85rem 0.85rem 0.85rem 2rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--ecu-purple-dark);
+    border: 2px solid var(--ecu-gold);
+    border-radius: 10px;
+    background: #fffdf4;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+#calc-value:focus {
+    outline: none;
+    border-color: var(--ecu-purple);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(243,194,65,0.25);
+}
+.calc-hint {
+    font-size: 0.78rem;
+    color: #6a5d86;
+    margin: 0.45rem 0 0;
+    font-style: italic;
+}
+
+.calc-results {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+}
+@media (min-width: 700px) {
+    .calc-results { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+}
+
+.calc-col {
+    border-radius: 12px;
+    padding: 1.3rem 1.15rem 1.1rem;
+    border: 1px solid rgba(89, 42, 138, 0.12);
+    background: #faf7ff;
+    display: flex;
+    flex-direction: column;
+}
+.calc-col.calc-cash {
+    background: #f2fff6;
+    border-color: rgba(34, 140, 60, 0.25);
+    position: relative;
+}
+.calc-col-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px dashed rgba(89, 42, 138, 0.2);
+}
+.calc-cash .calc-col-head { border-bottom-color: rgba(34, 140, 60, 0.25); }
+.calc-col-tag {
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--ecu-purple-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.calc-col-tag.cash { color: #146b2d; }
+.calc-col-time {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #6a5d86;
+    background: rgba(89, 42, 138, 0.08);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.calc-cash .calc-col-time {
+    color: #146b2d;
+    background: rgba(34, 140, 60, 0.12);
+}
+
+.calc-breakdown {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    flex: 1;
+}
+.calc-breakdown li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.38rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(89, 42, 138, 0.06);
+}
+.calc-breakdown li:last-child { border-bottom: none; }
+.calc-line { color: #4a3e6a; line-height: 1.3; }
+.calc-val { font-weight: 700; color: var(--ecu-purple-dark); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.calc-breakdown li.deduct .calc-val { color: #a12f2f; }
+.calc-breakdown li .calc-val.zero { color: #146b2d; }
+
+.calc-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 0.9rem;
+    background: var(--ecu-purple);
+    color: #fff;
+    border-radius: 8px;
+    margin-top: auto;
+}
+.calc-total.cash { background: #146b2d; }
+.calc-total span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.calc-total strong {
+    font-size: 1.35rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--ecu-gold);
+}
+.calc-total.cash strong { color: #ffec9e; }
+
+.calc-verdict {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto;
+    padding-top: 0.2rem;
+}
+.verdict-line {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ecu-purple-dark);
+    line-height: 1.5;
+    margin: 0 0 0.5rem;
+}
+.verdict-sub {
+    font-size: 0.8rem;
+    color: #6a5d86;
+    line-height: 1.45;
+    margin: 0 0 1.1rem;
+    font-style: italic;
+}
+.calc-cta {
+    display: inline-block;
+    background: var(--cta-green);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(34, 140, 60, 0.28);
+    transition: transform 150ms, box-shadow 150ms;
+}
+.calc-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(34, 140, 60, 0.38);
+}
+
+@media (max-width: 559px) {
+    .calc-card { padding: 1.6rem 1.1rem; }
+    .calc-col { padding: 1.05rem 0.95rem 0.9rem; }
+    .calc-breakdown li { font-size: 0.85rem; }
+    .calc-total strong { font-size: 1.2rem; }
+}
+
+/* =====================================================
+   FORM FRICTION + TRUST OPTIMIZATIONS (v4)
+   Single-screen form. Phone moved to bottom. Dropdowns replaced with chips.
+   Trust signals woven inline.
+   ===================================================== */
+
+/* Reassurance microcopy under sensitive fields (e.g. address) */
+.field-reassure {
+    margin: 0.35rem 0 0.5rem;
+    font-size: 0.82rem;
+    color: #6f6088;
+    line-height: 1.5;
+}
+
+/* Trust badge row (under the submit button) */
+.form-trust-row {
+    list-style: none;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.95rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #5a4e75;
+    text-align: center;
+}
+.form-trust-row li { white-space: nowrap; }
+
+/* Risk-reversal copy directly above submit */
+.risk-reversal {
+    margin: 0.9rem 0 0;
+    padding: 0.7rem 0.85rem;
+    background: rgba(243, 194, 65, 0.12);
+    border-left: 3px solid var(--ecu-gold);
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    color: #4a4063;
+    line-height: 1.5;
+}
+
+/* Button-chip groups (replaces native <select> for thumb-friendly tapping) */
+.chip-label {
+    display: block;
+    margin: 0.95rem 0 0.4rem;
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: #2f2150;
+}
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 0.2rem;
+}
+.chip {
+    flex: 1 1 calc(50% - 0.45rem);
+    min-height: 48px;             /* thumb-friendly tap target */
+    padding: 0.6rem 0.85rem;
+    background: #fff;
+    border: 1.5px solid #cfc3e2;
+    border-radius: 0.7rem;
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 120ms, background-color 120ms, transform 80ms, color 120ms;
+}
+.chip:hover,
+.chip:focus-visible {
+    border-color: var(--ecu-purple);
+    outline: none;
+    background: #f6f1fc;
+}
+.chip:active { transform: scale(0.98); }
+.chip.is-selected {
+    border-color: var(--ecu-purple);
+    background: var(--ecu-purple);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(89, 42, 138, 0.22);
+}
+.chip.is-selected:hover {
+    background: var(--ecu-purple-dark);
+}
+
+/* On very narrow screens, chips stack full-width for one-handed thumb use */
+@media (max-width: 419px) {
+    .chip { flex: 1 1 100%; }
+}
+

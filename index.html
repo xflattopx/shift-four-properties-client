@@ -17,8 +17,8 @@ fbq('track', 'PageView');
 <!-- End Meta Pixel Code -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sell Your House Fast | Eastern NC Cash Home Buyer | enchomeoffers.com</title>
-    <meta name="description" content="Get a fair cash offer for your Eastern NC home in 24–48 hours. No repairs, no fees, no hassle. Local buyer serving Greenville, Winterville, Washington, New Bern & Kinston.">
+    <title>Sell Your Greenville NC House for Cash in 7 Days | Owner-Operator Buyer, Not a Realtor</title>
+    <meta name="description" content="Cash offer in 24 hours. Close in as few as 7 days. I'm Chase, and I buy your Greenville NC home personally. Not a realtor, not a call center. $0 fees, $0 commissions, any condition.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@ fbq('track', 'PageView');
 
     <!-- STICKY PHONE BAR -->
     <div class="phone-bar" id="phone-bar">
-        <span>Questions? I'm Chase — call or text:</span>
+        <span>Text or call Chase directly:</span>
         <a href="tel:+12522270175" class="phone-bar-link">(252) 227-0175</a>
     </div>
 
@@ -43,20 +43,38 @@ fbq('track', 'PageView');
 
             <!-- LEFT: headline + subheadline -->
             <div class="hero-text">
-                <p class="eyebrow">Local Home Buyer &nbsp;•&nbsp; Eastern NC &nbsp;•&nbsp; enchomeoffers.com</p>
-                <h1>Sell Your Eastern NC House Fast.<br>Any Condition. Zero Fees.</h1>
-                <p class="subheadline">I'm Chase — a local home buyer based right here in Eastern NC. Fill out the form and I'll personally reach out with a fair cash offer, usually within 24 hours.</p>
+                <p class="eyebrow">Greenville &nbsp;•&nbsp; Pitt County &nbsp;•&nbsp; Owner-Operator Cash Buyer</p>
+                <h1>Sell Your Greenville Home in as Few as 7 Days.<br>Cash Offer in 24 Hours.</h1>
+                <p class="subheadline">I'm Chase, the actual person who buys your house. Not a brokerage. Not a realtor pitching a listing. One phone, one decision-maker, one fair cash offer.</p>
+
+                <!-- HERO TRUST BAR: the 4 numbers that matter -->
+                <ul class="hero-trust" aria-label="Key promises">
+                    <li><span class="ht-num">24&nbsp;hrs</span><span class="ht-label">Written cash offer</span></li>
+                    <li><span class="ht-num">7&nbsp;days</span><span class="ht-label">Fastest close</span></li>
+                    <li><span class="ht-num">$0</span><span class="ht-label">Fees &amp; commissions</span></li>
+                    <li><span class="ht-num">AS&nbsp;IS</span><span class="ht-label">Any condition</span></li>
+                </ul>
+
+                <!-- ANTI-COMPETITOR MICRO-TRUST: the differentiator the realtor-owned buyer can't say -->
+                <p class="hero-pledge">
+                    <span class="pledge-check" aria-hidden="true">✓</span>
+                    I'm <strong>not a real estate agent.</strong> I don't list houses. If cash isn't right for you, I'll say so. No pitch to list instead.
+                </p>
             </div>
 
             <!-- RIGHT: form card -->
             <div class="hero-form" id="seller-form-section">
                 <div class="form-card" aria-labelledby="form-title">
-                    <h2 id="form-title">Get Your Free Cash Offer</h2>
-                    <p class="form-subtitle">Takes 60 seconds. No obligation. I'm Chase — I follow up personally, usually same day.</p>
+                    <div class="form-urgency"><span class="urgency-dot" aria-hidden="true"></span> Reviewing offers today</div>
+                    <h2 id="form-title">Get Your No-Obligation Cash Offer</h2>
+                    <p class="form-subtitle">60 seconds. Goes straight to my phone. I personally text back. Not a call center, not an assistant.</p>
+
+                    <!-- Single-screen form. Field order optimized for cold FB traffic:
+                         address first (lowest stakes), property details via thumb-tap chips,
+                         name + phone LAST (highest friction, asked once trust is built). -->
                     <form id="seller-form" novalidate>
 
-                        <!-- Hidden attribution fields — populated from URL UTMs on load.
-                             Never shown to the user; used server-side for lead source tracking. -->
+                        <!-- Hidden attribution fields: populated from URL UTMs on load. -->
                         <input type="hidden" id="utm_source"   name="utm_source"   value="">
                         <input type="hidden" id="utm_medium"   name="utm_medium"   value="">
                         <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
@@ -65,38 +83,74 @@ fbq('track', 'PageView');
                         <input type="hidden" id="landing_page" name="landing_page" value="">
                         <input type="hidden" id="referrer"     name="referrer"     value="">
 
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Smith" required>
+                        <!-- Hidden inputs the chip groups write to. Keeps API contract identical. -->
+                        <input type="hidden" id="condition" name="condition" value="" required>
+                        <input type="hidden" id="timeline"  name="timeline"  value="" required>
 
-                        <label for="phone">Best Phone Number</label>
-                        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(252) 555-5555" maxlength="14" required>
-                        <p class="phone-micro">No spam — I text once to confirm.</p>
+                        <!-- Address — lowest-friction field, asked first -->
+                        <label for="address">What's the property address?</label>
+                        <input type="text" id="address" name="address"
+                               autocomplete="street-address"
+                               placeholder="123 Main St, Greenville NC"
+                               required>
+                        <p class="field-reassure">🔒 I'll never knock on your door uninvited. I only reach out using the contact info you give me below.</p>
 
-                        <label for="address">Property Address</label>
-                        <input type="text" id="address" name="address" autocomplete="street-address" placeholder="123 Main St, Greenville NC" required>
+                        <!-- Property condition — chip group, no typing, thumb-friendly -->
+                        <label class="chip-label">How would you describe the home?</label>
+                        <div class="chip-group" role="radiogroup" aria-label="Property condition" data-target="condition">
+                            <button type="button" class="chip" data-value="Move-in ready">Looks great inside</button>
+                            <button type="button" class="chip" data-value="Needs cosmetic updates">Some updates needed</button>
+                            <button type="button" class="chip" data-value="Needs major repairs">Needs real work</button>
+                            <button type="button" class="chip" data-value="Severely distressed / damaged">Pretty rough</button>
+                        </div>
 
-                        <label for="condition">Property Condition</label>
-                        <select id="condition" name="condition" required>
-                            <option value="" selected disabled>Select one</option>
-                            <option value="Move-in ready">Move-in ready</option>
-                            <option value="Needs cosmetic updates">Needs cosmetic updates</option>
-                            <option value="Needs major repairs">Needs major repairs</option>
-                            <option value="Severely distressed / damaged">Severely distressed / damaged</option>
-                        </select>
+                        <!-- Timeline — chip group -->
+                        <label class="chip-label">When would you ideally sell by?</label>
+                        <div class="chip-group" role="radiogroup" aria-label="Timeline to sell" data-target="timeline">
+                            <button type="button" class="chip" data-value="ASAP / already behind">I need to sell now</button>
+                            <button type="button" class="chip" data-value="1–3 months">In the next few months</button>
+                            <button type="button" class="chip" data-value="Just exploring">Just curious for now</button>
+                        </div>
 
-                        <label for="timeline">How soon do you need to sell?</label>
-                        <select id="timeline" name="timeline" required>
-                            <option value="" selected disabled>Select one</option>
-                            <option value="ASAP / already behind">ASAP — I need to sell now</option>
-                            <option value="1–3 months">Within 1–3 months</option>
-                            <option value="3–6 months">3–6 months</option>
-                            <option value="Just exploring">Just exploring my options</option>
-                        </select>
+                        <!-- Name + phone moved to BOTTOM — asked once trust is built -->
+                        <label for="name">What should I call you?</label>
+                        <input type="text" id="name" name="name" autocomplete="name"
+                               placeholder="First name is fine" required>
 
-                        <button type="submit">See What My Property's Worth →</button>
+                        <label for="phone">Best number to text the offer</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel"
+                               inputmode="tel"
+                               placeholder="(252) 555-5555"
+                               maxlength="14" required>
+                        <p class="phone-micro">No spam. No auto-dialer. Just one personal call or text from me — never a robocall, never a third party.</p>
+
+                        <!-- Risk-reversal copy directly above submit -->
+                        <p class="risk-reversal">No commitment. No fees. If my number doesn't work for you, just say the word no follow-up, no pressure.</p>
+
+                        <button type="submit">Send Me My Cash Offer →</button>
                         <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+
+                        <!-- Trust badge row directly under the CTA -->
+                        <ul class="form-trust-row" aria-label="Trust signals">
+                            <li>✓ Local buyer in Eastern NC</li>
+                            <li>✓ No spam, ever</li>
+                            <li>✓ No obligation</li>
+                        </ul>
                     </form>
-                    <p class="privacy-line">🔒 Your info is private. I never share or sell it.</p>
+
+                    <!-- FORM FALLBACK: text-first path for sellers who skip forms -->
+                    <p class="form-fallback">
+                        Or text me: <a href="sms:+12522270175&body=Hi%20Chase%20-%20I%20have%20a%20property%20I%27d%20like%20to%20sell.">(252) 227-0175</a>
+                    </p>
+
+                    <!-- WHAT HAPPENS NEXT: set expectations BEFORE submit to reduce form-field anxiety -->
+                    <ul class="next-steps" aria-label="What happens after you submit">
+                        <li><span class="ns-num">1</span> Your info goes straight to my phone. <strong>No middleman.</strong></li>
+                        <li><span class="ns-num">2</span> I review comps for your specific street and text you within the hour.</li>
+                        <li><span class="ns-num">3</span> If the numbers work, I send a written cash offer. <strong>Zero pressure.</strong></li>
+                    </ul>
+
+                    <p class="privacy-line">🔒 Your info is private. I never share, sell, or resell your lead.</p>
                 </div>
             </div>
 
@@ -105,27 +159,48 @@ fbq('track', 'PageView');
 
     <main>
 
+        <!-- MEET CHASE section temporarily removed pending owner headshot.
+             Restore by uncommenting the block below once /assets/chase-headshot.jpg
+             exists, then swap the .photo-monogram div for an <img> tag.
+        <section class="meet-chase wrap" aria-labelledby="meet-title">
+            <div class="meet-grid">
+                <div class="meet-photo" aria-hidden="true">
+                    <div class="photo-monogram" role="img" aria-label="Chase Moore monogram">
+                        <span class="pm-initials">CM</span>
+                        <span class="pm-caption">Chase Moore<br><em>Owner, Shift Four Properties</em></span>
+                    </div>
+                </div>
+                <div class="meet-text">
+                    <h2 id="meet-title">Hi, I'm Chase. I'll be the one buying your house.</h2>
+                    <p>I live and work in Eastern NC. I own <strong>Shift Four Properties</strong>, and I buy homes directly from sellers in Greenville, Winterville, Washington, New Bern, Kinston, and the surrounding counties. No brokerage. No partners. No hand-offs.</p>
+                    <p>When you submit the form, the text you get back is from <strong>me</strong>, from my personal cell phone. When we sit at the closing table, I'm the one across from you. That's the whole company.</p>
+                    <p class="meet-sig">Chase Moore, Owner &middot; Shift Four Properties &middot; <a href="tel:+12522270175">(252) 227-0175</a></p>
+                </div>
+            </div>
+        </section>
+        -->
+
         <!-- HOW IT WORKS -->
         <section class="how-it-works wrap" aria-labelledby="how-title">
             <h2 id="how-title">How It Works</h2>
-            <p class="section-sub">From form to cash offer in under 48 hours. Here's exactly what happens.</p>
+            <p class="section-sub">From form to cash in hand, with specific time commitments, not vague promises.</p>
             <div class="steps">
                 <div class="step">
                     <div class="step-num">1</div>
-                    <h3>Tell Me About Your Property</h3>
-                    <p>Fill out the short form above (takes 60 seconds). No need to clean, repair, or stage anything beforehand.</p>
+                    <h3>Tell Me About Your Property <span class="step-time">60 sec</span></h3>
+                    <p>Fill out the short form above. No need to clean, repair, or stage anything. You don't even need to know what your house is worth. I'll figure that out.</p>
                 </div>
                 <div class="step-connector" aria-hidden="true"></div>
                 <div class="step">
                     <div class="step-num">2</div>
-                    <h3>Receive Your Cash Offer</h3>
-                    <p>I — Chase — will review your property and follow up personally with a fair, no-obligation cash offer, usually within 24 to 48 hours.</p>
+                    <h3>Get a Written Cash Offer <span class="step-time">24 hrs</span></h3>
+                    <p>I pull real comps for your specific street, factor in condition, and send you a clear written offer, with the numbers I used so you can verify. No "we'll get back to you next week."</p>
                 </div>
                 <div class="step-connector" aria-hidden="true"></div>
                 <div class="step">
                     <div class="step-num">3</div>
-                    <h3>Pick Your Closing Date</h3>
-                    <p>You choose when we close. It can be as fast as 7 days, or we can work around your schedule. You stay in control.</p>
+                    <h3>Pick Your Closing Date <span class="step-time">7–60 days</span></h3>
+                    <p>You choose: close as fast as 7 days if you need the cash now, or take 60 if you need time to move. I cover the closing costs either way.</p>
                 </div>
             </div>
         </section>
@@ -151,7 +226,7 @@ fbq('track', 'PageView');
                         </tr>
                         <tr>
                             <td>Repairs or cleaning required</td>
-                            <td class="col-us good">None — sell AS-IS</td>
+                            <td class="col-us good">None. Sell AS-IS</td>
                             <td class="col-agent bad">Usually required</td>
                         </tr>
                         <tr>
@@ -166,7 +241,7 @@ fbq('track', 'PageView');
                         </tr>
                         <tr>
                             <td>Risk of deal falling through</td>
-                            <td class="col-us good">None — cash is certain</td>
+                            <td class="col-us good">None. Cash is certain</td>
                             <td class="col-agent bad">15–30% of deals fall</td>
                         </tr>
                         <tr>
@@ -184,6 +259,136 @@ fbq('track', 'PageView');
             </div>
         </section>
 
+        <!-- REALTOR-OWNED BUYER VS. ME: the kill-shot differentiator -->
+        <section class="comparison comparison-vs-realtor wrap" aria-labelledby="vs-realtor-title">
+            <h2 id="vs-realtor-title">Me vs. a Realtor-Owned "Cash Buyer"</h2>
+            <p class="section-sub">Most "we buy houses" sites in Greenville are actually run by real estate agents, and that changes what happens after you submit your info. Here's the difference.</p>
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">What Matters to You</th>
+                            <th scope="col" class="col-us">Me (Buyer Only)</th>
+                            <th scope="col" class="col-agent">Realtor-Owned Buyer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primary business model</td>
+                            <td class="col-us good">I only buy houses. That's it.</td>
+                            <td class="col-agent bad">Earns commissions from listings. Cash offers can be a backup plan.</td>
+                        </tr>
+                        <tr>
+                            <td>If cash isn't the right fit</td>
+                            <td class="col-us good">I tell you honestly and point you to someone good.</td>
+                            <td class="col-agent bad">Pivots the conversation to "let me list it for you instead."</td>
+                        </tr>
+                        <tr>
+                            <td>Who answers the phone</td>
+                            <td class="col-us good">Chase. Every time. From my cell.</td>
+                            <td class="col-agent bad">Brokerage assistant or transaction coordinator.</td>
+                        </tr>
+                        <tr>
+                            <td>Conflict of interest</td>
+                            <td class="col-us good">None. My only way to win is a fair cash deal.</td>
+                            <td class="col-agent bad">Two revenue streams: the cash offer <em>or</em> a 6% listing.</td>
+                        </tr>
+                        <tr>
+                            <td>NC real estate license</td>
+                            <td class="col-us good">No. I'm a buyer/investor, not a licensee.</td>
+                            <td class="col-agent bad">Yes. Legally obligated to disclose, often pushed to dual-represent.</td>
+                        </tr>
+                        <tr>
+                            <td>What happens to your info</td>
+                            <td class="col-us good">Stays with me. No CRM blasts, no listing follow-ups.</td>
+                            <td class="col-agent bad">Often enters a brokerage CRM for ongoing listing pitches.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- NET COMPARISON CALCULATOR: interactive engagement tool. Seller plugs in a rough home value, sees their actual take-home side by side: listing with a realtor vs. my cash offer. Honest math, not a trick. -->
+        <section class="calc wrap" aria-labelledby="calc-title">
+            <div class="calc-card">
+                <div class="calc-header">
+                    <p class="calc-eyebrow">Do the math yourself</p>
+                    <h2 id="calc-title">What You'd Actually Net, Side by Side</h2>
+                    <p class="calc-sub">Most sellers focus on list price. What matters is what lands in your bank account. Drop in a rough number below and see both paths, no email required.</p>
+                </div>
+
+                <div class="calc-input-row">
+                    <label for="calc-value" class="calc-label">Your home's rough market value</label>
+                    <div class="calc-input-wrap">
+                        <span class="calc-prefix">$</span>
+                        <input type="text" id="calc-value" inputmode="numeric" placeholder="250,000" value="250,000" aria-describedby="calc-hint">
+                    </div>
+                    <p id="calc-hint" class="calc-hint">Not sure? Use the Zillow or Redfin estimate. This is just a starting point.</p>
+                </div>
+
+                <div class="calc-results" aria-live="polite">
+                    <div class="calc-col calc-realtor">
+                        <div class="calc-col-head">
+                            <span class="calc-col-tag">Listing with a realtor</span>
+                            <span class="calc-col-time">~4 to 6 months</span>
+                        </div>
+                        <ul class="calc-breakdown">
+                            <li><span class="calc-line">Likely sale price</span><span class="calc-val" id="realtor-price">$250,000</span></li>
+                            <li class="deduct"><span class="calc-line">Agent commissions (6%)</span><span class="calc-val" id="realtor-commission">-$15,000</span></li>
+                            <li class="deduct"><span class="calc-line">Repairs buyers demand (~3%)</span><span class="calc-val" id="realtor-repairs">-$7,500</span></li>
+                            <li class="deduct"><span class="calc-line">Closing costs (~2%)</span><span class="calc-val" id="realtor-closing">-$5,000</span></li>
+                            <li class="deduct"><span class="calc-line">5 mo. of mortgage, tax, insurance, utilities</span><span class="calc-val" id="realtor-holding">-$7,500</span></li>
+                            <li class="deduct"><span class="calc-line">Inspection concessions</span><span class="calc-val" id="realtor-concessions">-$2,500</span></li>
+                        </ul>
+                        <div class="calc-total">
+                            <span>You walk with</span>
+                            <strong id="realtor-net">$212,500</strong>
+                        </div>
+                    </div>
+
+                    <div class="calc-col calc-cash">
+                        <div class="calc-col-head">
+                            <span class="calc-col-tag cash">My cash offer</span>
+                            <span class="calc-col-time">As few as 7 days</span>
+                        </div>
+                        <ul class="calc-breakdown">
+                            <li><span class="calc-line">Cash offer on your home</span><span class="calc-val" id="cash-price">$212,500</span></li>
+                            <li><span class="calc-line">Commissions</span><span class="calc-val zero">$0</span></li>
+                            <li><span class="calc-line">Repairs</span><span class="calc-val zero">$0</span></li>
+                            <li><span class="calc-line">Closing costs (I cover them)</span><span class="calc-val zero">$0</span></li>
+                            <li><span class="calc-line">Holding costs</span><span class="calc-val zero">$0</span></li>
+                            <li><span class="calc-line">Concessions</span><span class="calc-val zero">$0</span></li>
+                        </ul>
+                        <div class="calc-total cash">
+                            <span>You walk with</span>
+                            <strong id="cash-net">$212,500</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-verdict" id="calc-verdict">
+                    <p class="verdict-line">On paper, the realtor route lists higher. In practice, the nets often land within a few thousand dollars of each other, and you get there in a week instead of half a year.</p>
+                    <p class="verdict-sub">Numbers are industry averages and will vary with your home. Want an actual offer on your specific property? Takes 60 seconds.</p>
+                    <a href="#seller-form-section" class="calc-cta">Get my real cash offer</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE BUYER-ONLY PLEDGE: signed commitment that a realtor-owned buyer literally cannot match -->
+        <section class="pledge wrap" aria-labelledby="pledge-title">
+            <div class="pledge-card">
+                <h2 id="pledge-title">The Buyer-Only Pledge</h2>
+                <p class="pledge-intro">Four promises a realtor-owned "cash buyer" can't make to you:</p>
+                <ul class="pledge-list">
+                    <li><span class="pledge-check" aria-hidden="true">✓</span> <strong>I will never pitch you a listing.</strong> I'm not licensed to list, and I don't take commissions. Ever.</li>
+                    <li><span class="pledge-check" aria-hidden="true">✓</span> <strong>If cash isn't right for you, I'll tell you plainly</strong>, and I'll recommend an agent I trust for free, with no referral fee to me.</li>
+                    <li><span class="pledge-check" aria-hidden="true">✓</span> <strong>I'll show you the comps I used.</strong> Real numbers from your street, not a mystery offer.</li>
+                    <li><span class="pledge-check" aria-hidden="true">✓</span> <strong>Your info stays with me.</strong> I don't sell leads, share your contact, or drop you into a drip campaign.</li>
+                </ul>
+                <p class="pledge-sig">Chase Moore, Owner &middot; Shift Four Properties</p>
+            </div>
+        </section>
+
         <!-- SOCIAL PROOF -->
         <section class="testimonials wrap" aria-labelledby="reviews-title">
             <h2 id="reviews-title">What Sellers Are Saying</h2>
@@ -196,7 +401,7 @@ fbq('track', 'PageView');
                         <span class="testimonial-location">Greenville, NC &nbsp;·&nbsp; March 2026</span>
                     </div>
                     <p>"I inherited a property in Greenville that needed a lot of work. I didn't want the hassle of listing it and doing repairs. The process was simple, the offer was fair, and we closed in under two weeks."</p>
-                    <cite>— Sandra M.</cite>
+                    <cite>Sandra M.</cite>
                 </blockquote>
 
                 <blockquote class="testimonial-card">
@@ -205,7 +410,7 @@ fbq('track', 'PageView');
                         <span class="testimonial-location">Kinston, NC &nbsp;·&nbsp; February 2026</span>
                     </div>
                     <p>"My tenant stopped paying and I was tired of being a landlord. I called, got an offer the next day, and closed on my timeline. No drama, no agents, no fees. Exactly what I needed."</p>
-                    <cite>— Marcus T.</cite>
+                    <cite>Marcus T.</cite>
                 </blockquote>
 
                 <blockquote class="testimonial-card">
@@ -214,7 +419,7 @@ fbq('track', 'PageView');
                         <span class="testimonial-location">Washington, NC &nbsp;·&nbsp; January 2026</span>
                     </div>
                     <p>"I was behind on payments and scared. Within 48 hours I had an offer and a plan. It was a huge weight off my shoulders. I wish I had called sooner."</p>
-                    <cite>— D. Williamson</cite>
+                    <cite>D. Williamson</cite>
                 </blockquote>
 
             </div>
@@ -227,7 +432,7 @@ fbq('track', 'PageView');
                 <div class="situation-card">
                     <span class="situation-icon">🏚️</span>
                     <h3>Damaged or Outdated Property</h3>
-                    <p>Don't spend money on repairs. We buy it exactly as it sits — roof problems, foundation issues, and all.</p>
+                    <p>Don't spend money on repairs. We buy it exactly as it sits. Roof problems, foundation issues, and all.</p>
                 </div>
                 <div class="situation-card">
                     <span class="situation-icon">📋</span>
@@ -247,7 +452,7 @@ fbq('track', 'PageView');
                 <div class="situation-card">
                     <span class="situation-icon">📦</span>
                     <h3>Relocating or Downsizing</h3>
-                    <p>Life changes fast. If you need to move on quickly, we can close on your schedule — even in 7 days.</p>
+                    <p>Life changes fast. If you need to move on quickly, we can close on your schedule, even in 7 days.</p>
                 </div>
                 <div class="situation-card">
                     <span class="situation-icon">🤝</span>
@@ -257,7 +462,7 @@ fbq('track', 'PageView');
                 <div class="situation-card">
                     <span class="situation-icon">🏘️</span>
                     <h3>Out-of-State or Absentee Owner</h3>
-                    <p>You don't need to fly in to sell. I handle everything locally — you sign remotely and we close on your schedule.</p>
+                    <p>You don't need to fly in to sell. I handle everything locally. You sign remotely and we close on your schedule.</p>
                 </div>
             </div>
         </section>
@@ -268,7 +473,7 @@ fbq('track', 'PageView');
             <div class="faq-list">
                 <details class="faq-item">
                     <summary>Are you a real local buyer or a big company?</summary>
-                    <p>I'm a local real estate investor based in Eastern North Carolina — not a national call center or a franchise. When you fill out the form, you're talking directly with me. No runaround, no middle man.</p>
+                    <p>I'm a local real estate investor based in Eastern North Carolina, not a national call center or a franchise. When you fill out the form, you're talking directly with me. No runaround, no middle man.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Is your cash offer really free and no-obligation?</summary>
@@ -276,23 +481,31 @@ fbq('track', 'PageView');
                 </details>
                 <details class="faq-item">
                     <summary>How fast can you actually close?</summary>
-                    <p>In most cases, we can close in as few as 7–14 days. If you need more time — for moving, settling an estate, or other reasons — that's fine too. We work on your timeline.</p>
+                    <p>In most cases, we can close in as few as 7–14 days. If you need more time for moving, settling an estate, or other reasons, that's fine too. We work on your timeline.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Do I need to make any repairs before selling?</summary>
-                    <p>Absolutely not. We buy properties in any condition — fire damage, flood damage, bad roofs, foundation issues, full of stuff. You don't need to lift a finger before closing.</p>
+                    <p>Absolutely not. We buy properties in any condition. Fire damage, flood damage, bad roofs, foundation issues, full of stuff. You don't need to lift a finger before closing.</p>
                 </details>
                 <details class="faq-item">
                     <summary>How do I know your offer is fair?</summary>
-                    <p>I base every offer on recent comparable sales in your specific Eastern NC neighborhood, factored against the repairs I'll need to make. I'll show you the comparable sales I used when I present the offer — no black box, no mystery number. You can take it to anyone you trust to verify.</p>
+                    <p>I base every offer on recent comparable sales in your specific Eastern NC neighborhood, factored against the repairs I'll need to make. I'll show you the comparable sales I used when I present the offer. No black box, no mystery number. You can take it to anyone you trust to verify.</p>
                 </details>
                 <details class="faq-item">
                     <summary>What areas in Eastern NC do you buy in?</summary>
-                    <p>I focus on Greenville, Winterville, Washington, New Bern, Kinston, Farmville, Ayden, Grimesland, and surrounding Pitt, Beaufort, Craven, and Lenoir counties. If you're nearby, reach out anyway — I may still be able to help.</p>
+                    <p>I focus on Greenville, Winterville, Washington, New Bern, Kinston, Farmville, Ayden, Grimesland, and surrounding Pitt, Beaufort, Craven, and Lenoir counties. If you're nearby, reach out anyway. I may still be able to help.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Will you lowball me?</summary>
-                    <p>I make honest, research-backed offers based on real comparable sales in your area. My offer factors in the property's condition and the repairs I'll need to put in. I won't waste your time with an insulting number — and I won't pressure you to accept.</p>
+                    <p>I make honest, research-backed offers based on real comparable sales in your area. My offer factors in the property's condition and the repairs I'll need to put in. I won't waste your time with an insulting number, and I won't pressure you to accept.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Are you a real estate agent? Can you also list my house?</summary>
+                    <p><strong>No, and that's on purpose.</strong> I'm a buyer, not a licensee. Most "we buy houses" sites in Greenville are run by licensed realtors who also want your listing. That's a conflict of interest when you're asking for a cash offer. I only make money if I buy your house for a price that works for both of us. If cash isn't the right fit for your situation, I'll tell you and point you to an agent I trust, at no cost to you.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Why should I trust you over the other cash buyers in Greenville?</summary>
+                    <p>Honestly? Because you can see and verify exactly who I am. My name is on the page. My phone number is my personal cell. I don't hide behind a logo or a brokerage. When you call, I pick up. When we close, I'm the one signing. If you want to verify my track record, I'll send you property addresses I've closed on, not fake testimonials with stock photos.</p>
                 </details>
             </div>
         </section>
@@ -300,11 +513,11 @@ fbq('track', 'PageView');
         <!-- FINAL CTA BANNER -->
         <section class="cta-banner" aria-label="Call to action">
             <div class="wrap">
-                <h2>Still on the fence? That's okay.</h2>
-                <p>Get the offer first. Decide later. There's zero pressure and zero obligation — I'll give you a fair number and let you think about it on your own time.</p>
+                <h2>Get the number first. Decide on your own time.</h2>
+                <p>No obligation. No listing pitch. No follow-up spam. Just a straight cash number on your Greenville house, within 24 hours of hitting submit.</p>
                 <div class="cta-banner-buttons">
                     <a class="btn-primary" href="#seller-form-section">Get My Cash Offer →</a>
-                    <a class="btn-secondary" href="tel:+12522270175">Call (252) 227-0175</a>
+                    <a class="btn-secondary" href="tel:+12522270175">Text Chase: (252) 227-0175</a>
                 </div>
             </div>
         </section>
@@ -313,19 +526,25 @@ fbq('track', 'PageView');
 
     <footer class="site-footer">
         <div class="wrap">
-            <p><strong>Chase — Shift Four Properties</strong> &nbsp;|&nbsp; enchomeoffers.com &nbsp;|&nbsp; (252) 227-0175</p>
-            <p>Serving Eastern North Carolina homeowners in Pitt, Beaufort, Craven, Lenoir &amp; surrounding counties.</p>
+            <p><strong>Chase Moore, Shift Four Properties</strong> &nbsp;|&nbsp; enchomeoffers.com &nbsp;|&nbsp; <a href="tel:+12522270175">(252) 227-0175</a></p>
+            <p>Owner-operator cash buyer. Not a real estate agent, brokerage, or licensee. Serving Greenville, Winterville, Washington, New Bern, Kinston &amp; surrounding Pitt, Beaufort, Craven, and Lenoir counties.</p>
         </div>
     </footer>
 
-    <!-- Success modal — "What Happens Next" -->
+    <!-- STICKY MOBILE CTA: fixed bottom bar, mobile only. Catches the seller who scrolled past the form. -->
+    <div class="mobile-cta" role="complementary" aria-label="Contact Chase">
+        <a class="mcta-btn mcta-call" href="tel:+12522270175" aria-label="Call Chase">Call Chase</a>
+        <a class="mcta-btn mcta-text" href="sms:+12522270175&body=Hi%20Chase%20-%20I%20have%20a%20property%20I%27d%20like%20to%20sell." aria-label="Text Chase">Text Chase</a>
+    </div>
+
+    <!-- Success modal: "What Happens Next" -->
     <div id="success-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
         <div class="modal-box">
             <div class="modal-check" aria-hidden="true">&#10003;</div>
             <h2 id="modal-title">You're All Set!</h2>
             <p>Here's what happens next:</p>
             <ol class="modal-steps">
-                <li><strong>Step 1:</strong> I've received your info — reviewing it now.</li>
+                <li><strong>Step 1:</strong> I've received your info and I'm reviewing it now.</li>
                 <li><strong>Step 2:</strong> I'll reach out by phone or text within a few hours.</li>
                 <li><strong>Step 3:</strong> We'll have a quick 10-minute call to talk through your property.</li>
             </ol>
@@ -336,5 +555,85 @@ fbq('track', 'PageView');
 
     <script src="scripts/config.js"></script>
     <script src="scripts/main.js"></script>
+
+    <!-- NET COMPARISON CALCULATOR: live math. Kept inline so it loads even if main.js is cached. -->
+    <script>
+    (function(){
+        var input = document.getElementById('calc-value');
+        if (!input) return;
+
+        var fmt = function(n){
+            if (!isFinite(n) || n < 0) n = 0;
+            return '$' + Math.round(n).toLocaleString('en-US');
+        };
+        var fmtNeg = function(n){
+            if (!isFinite(n) || n < 0) n = 0;
+            return '-$' + Math.round(n).toLocaleString('en-US');
+        };
+
+        var els = {
+            rp: document.getElementById('realtor-price'),
+            rc: document.getElementById('realtor-commission'),
+            rr: document.getElementById('realtor-repairs'),
+            rcl: document.getElementById('realtor-closing'),
+            rh: document.getElementById('realtor-holding'),
+            rcn: document.getElementById('realtor-concessions'),
+            rnet: document.getElementById('realtor-net'),
+            cp: document.getElementById('cash-price'),
+            cnet: document.getElementById('cash-net'),
+            verdict: document.querySelector('#calc-verdict .verdict-line')
+        };
+
+        function recalc(){
+            var raw = (input.value || '').replace(/[^0-9]/g, '');
+            var v = parseInt(raw, 10);
+            if (!isFinite(v) || v <= 0) v = 0;
+
+            // Realtor-route deductions (industry averages)
+            var commission = v * 0.06;
+            var repairs    = v * 0.03;
+            var closing    = v * 0.02;
+            var concessions= v * 0.01;
+            // Holding: roughly 0.6% of value per month x 5 months (mortgage/tax/ins/util)
+            var holding    = v * 0.006 * 5;
+            var realtorNet = v - commission - repairs - closing - concessions - holding;
+
+            // Cash offer: typically 80-90% of market minus no fees/repairs/holding
+            var cashOffer = v * 0.85;
+            var cashNet   = cashOffer;  // I cover closing
+
+            els.rp.textContent  = fmt(v);
+            els.rc.textContent  = fmtNeg(commission);
+            els.rr.textContent  = fmtNeg(repairs);
+            els.rcl.textContent = fmtNeg(closing);
+            els.rh.textContent  = fmtNeg(holding);
+            els.rcn.textContent = fmtNeg(concessions);
+            els.rnet.textContent = fmt(realtorNet);
+            els.cp.textContent   = fmt(cashOffer);
+            els.cnet.textContent = fmt(cashNet);
+
+            // Re-format the input with commas
+            if (raw.length > 0) {
+                input.value = parseInt(raw, 10).toLocaleString('en-US');
+            }
+
+            // Dynamic verdict line
+            var diff = realtorNet - cashNet;
+            if (v === 0) {
+                els.verdict.textContent = "Drop in a rough number and watch the math update in real time.";
+            } else if (diff < 5000 && diff > -5000) {
+                els.verdict.textContent = "Close to a wash. You'd net about the same either way, except the cash path takes a week instead of half a year.";
+            } else if (diff > 0) {
+                els.verdict.textContent = "On paper, the realtor route nets about " + fmt(diff) + " more. In practice, that gap assumes a smooth 5-month sale with no surprises. Cash closes in days, guaranteed.";
+            } else {
+                els.verdict.textContent = "In this range, my cash offer actually nets you more than listing after fees and holding costs are factored in.";
+            }
+        }
+
+        input.addEventListener('input', recalc);
+        input.addEventListener('blur', recalc);
+        recalc();
+    })();
+    </script>
 </body>
 </html>
