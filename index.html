@@ -60,14 +60,26 @@ fbq('track', 'PageView');
                     <span class="pledge-check" aria-hidden="true">✓</span>
                     I'm <strong>not a real estate agent.</strong> I don't list houses. If cash isn't right for you, I'll say so. No pitch to list instead.
                 </p>
+
+                <!-- WHAT HAPPENS NEXT: lives in the left column on desktop so it
+                     fills the whitespace below the pledge AND keeps the form
+                     itself shorter. Sets expectations before the seller commits. -->
+                <div class="hero-next" aria-label="What happens after you submit">
+                    <p class="hero-next-eyebrow">After you hit submit</p>
+                    <ol class="hero-next-list">
+                        <li><span class="hn-num">1</span><span class="hn-text">Goes straight to my phone. <strong>No middleman.</strong></span></li>
+                        <li><span class="hn-num">2</span><span class="hn-text">Comps pulled for your street, text within the hour.</span></li>
+                        <li><span class="hn-num">3</span><span class="hn-text">Written cash offer. <strong>Zero pressure.</strong></span></li>
+                    </ol>
+                </div>
             </div>
 
             <!-- RIGHT: form card -->
             <div class="hero-form" id="seller-form-section">
                 <div class="form-card" aria-labelledby="form-title">
                     <div class="form-urgency"><span class="urgency-dot" aria-hidden="true"></span> Reviewing offers today</div>
-                    <h2 id="form-title">Get Your No-Obligation Cash Offer</h2>
-                    <p class="form-subtitle">60 seconds. Goes straight to my phone. I personally text back. Not a call center, not an assistant.</p>
+                    <h2 id="form-title">60-Second Cash Offer</h2>
+                    <p class="form-subtitle">Goes straight to my phone. I personally text back. Not a call center, not an assistant.</p>
 
                     <!-- Single-screen form. Field order optimized for cold FB traffic:
                          address first (lowest stakes), property details via thumb-tap chips,
@@ -87,8 +99,13 @@ fbq('track', 'PageView');
                         <input type="hidden" id="condition" name="condition" value="" required>
                         <input type="hidden" id="timeline"  name="timeline"  value="" required>
 
-                        <!-- Address — lowest-friction field, asked first -->
-                        <label for="address">What's the property address?</label>
+                        <!-- Address — lowest-friction field, asked first.
+                             Mobile renders the label as a small uppercase mini-label via .form-label.
+                             Desktop sees the full friendly question via .label-long. -->
+                        <label for="address">
+                            <span class="label-short">Property address</span>
+                            <span class="label-long">What's the property address?</span>
+                        </label>
                         <input type="text" id="address" name="address"
                                autocomplete="street-address"
                                placeholder="123 Main St, Greenville NC"
@@ -96,28 +113,40 @@ fbq('track', 'PageView');
                         <p class="field-reassure">🔒 I'll never knock on your door uninvited. I only reach out using the contact info you give me below.</p>
 
                         <!-- Property condition — chip group, no typing, thumb-friendly -->
-                        <label class="chip-label">How would you describe the home?</label>
+                        <label class="chip-label">
+                            <span class="label-short">Condition</span>
+                            <span class="label-long">How would you describe the home?</span>
+                        </label>
                         <div class="chip-group" role="radiogroup" aria-label="Property condition" data-target="condition">
-                            <button type="button" class="chip" data-value="Move-in ready">Looks great inside</button>
-                            <button type="button" class="chip" data-value="Needs cosmetic updates">Some updates needed</button>
-                            <button type="button" class="chip" data-value="Needs major repairs">Needs real work</button>
+                            <button type="button" class="chip" data-value="Move-in ready">Looks great</button>
+                            <button type="button" class="chip" data-value="Needs cosmetic updates">Some updates</button>
+                            <button type="button" class="chip" data-value="Needs major repairs">Lots of work</button>
                             <button type="button" class="chip" data-value="Severely distressed / damaged">Pretty rough</button>
                         </div>
 
                         <!-- Timeline — chip group -->
-                        <label class="chip-label">When would you ideally sell by?</label>
+                        <label class="chip-label">
+                            <span class="label-short">Timeline</span>
+                            <span class="label-long">When would you ideally sell by?</span>
+                        </label>
                         <div class="chip-group" role="radiogroup" aria-label="Timeline to sell" data-target="timeline">
-                            <button type="button" class="chip" data-value="ASAP / already behind">I need to sell now</button>
-                            <button type="button" class="chip" data-value="1–3 months">In the next few months</button>
-                            <button type="button" class="chip" data-value="Just exploring">Just curious for now</button>
+                            <button type="button" class="chip" data-value="ASAP / already behind">Sell now</button>
+                            <button type="button" class="chip" data-value="1–3 months">1–3 months</button>
+                            <button type="button" class="chip" data-value="Just exploring">Just curious</button>
                         </div>
 
                         <!-- Name + phone moved to BOTTOM — asked once trust is built -->
-                        <label for="name">What should I call you?</label>
+                        <label for="name">
+                            <span class="label-short">Your name</span>
+                            <span class="label-long">What should I call you?</span>
+                        </label>
                         <input type="text" id="name" name="name" autocomplete="name"
-                               placeholder="First name is fine" required>
+                               placeholder="First name" required>
 
-                        <label for="phone">Best number to text the offer</label>
+                        <label for="phone">
+                            <span class="label-short">Phone</span>
+                            <span class="label-long">Best number to text the offer</span>
+                        </label>
                         <input type="tel" id="phone" name="phone" autocomplete="tel"
                                inputmode="tel"
                                placeholder="(252) 555-5555"
@@ -127,7 +156,7 @@ fbq('track', 'PageView');
                         <!-- Risk-reversal copy directly above submit -->
                         <p class="risk-reversal">No commitment. No fees. If my number doesn't work for you, just say the word no follow-up, no pressure.</p>
 
-                        <button type="submit">Send Me My Cash Offer →</button>
+                        <button type="submit">Get My Cash Offer →</button>
                         <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
 
                         <!-- Trust badge row directly under the CTA -->
@@ -138,17 +167,18 @@ fbq('track', 'PageView');
                         </ul>
                     </form>
 
+                    <!-- Mobile sticky CTA keeps the final submit action visible on short viewports.
+                         Sits fixed at the bottom of the viewport on phones so the seller can
+                         tap "Get My Cash Offer" without scrolling, no matter where they are
+                         in the form. The button is wired to the seller-form via form="seller-form". -->
+                    <div class="mobile-submit-wrap">
+                        <button type="submit" form="seller-form" class="mobile-submit-btn" aria-label="Get my cash offer">Get My Cash Offer →</button>
+                    </div>
+
                     <!-- FORM FALLBACK: text-first path for sellers who skip forms -->
                     <p class="form-fallback">
                         Or text me: <a href="sms:+12522270175&body=Hi%20Chase%20-%20I%20have%20a%20property%20I%27d%20like%20to%20sell.">(252) 227-0175</a>
                     </p>
-
-                    <!-- WHAT HAPPENS NEXT: set expectations BEFORE submit to reduce form-field anxiety -->
-                    <ul class="next-steps" aria-label="What happens after you submit">
-                        <li><span class="ns-num">1</span> Your info goes straight to my phone. <strong>No middleman.</strong></li>
-                        <li><span class="ns-num">2</span> I review comps for your specific street and text you within the hour.</li>
-                        <li><span class="ns-num">3</span> If the numbers work, I send a written cash offer. <strong>Zero pressure.</strong></li>
-                    </ul>
 
                     <p class="privacy-line">🔒 Your info is private. I never share, sell, or resell your lead.</p>
                 </div>

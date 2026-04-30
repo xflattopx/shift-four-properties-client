@@ -2,9 +2,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('seller-form');
     const formSection = document.getElementById('seller-form-section');
     const formMessage = document.getElementById('form-message');
-    const submitButton = form.querySelector('button[type="submit"]');
+    const submitButtons = Array.from(
+        document.querySelectorAll('#seller-form button[type="submit"], .mobile-submit-btn[form="seller-form"]')
+    );
+    const defaultSubmitText = 'Get My Cash Offer →';
     const successModal = document.getElementById('success-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    function setSubmitButtonsState(isSubmitting) {
+        submitButtons.forEach(function(button) {
+            button.disabled = isSubmitting;
+            button.textContent = isSubmitting ? 'Sending…' : defaultSubmitText;
+        });
+    }
 
     // ---- UTM / Attribution capture -------------------------------------------------
     // Read UTM params from the URL on first landing, persist to sessionStorage,
@@ -143,15 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // BEFORE validation. This gives Facebook a higher-volume signal to learn
     // from even when the submit ultimately fails. Dedup via eventID so it
     // doesn't double-count with the Lead event on successful submit.
-    submitButton.addEventListener('click', function() {
-        try {
-            if (typeof window.fbq === 'function') {
-                window.fbq('trackCustom', 'PropertyValueRequested', {
-                    content_name: 'Send Me My Cash Offer',
-                    content_category: 'Seller Lead Form'
-                });
-            }
-        } catch (err) { /* no-op */ }
+    submitButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            try {
+                if (typeof window.fbq === 'function') {
+                    window.fbq('trackCustom', 'PropertyValueRequested', {
+                        content_name: 'Send Me My Cash Offer',
+                        content_category: 'Seller Lead Form'
+                    });
+                }
+            } catch (err) { /* no-op */ }
+        });
     });
 
     form.addEventListener('submit', async function(event) {
@@ -173,8 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending…';
+        setSubmitButtonsState(true);
 
         try {
             const response = await fetch(leadsEndpoint, {
@@ -238,8 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formMessage.textContent = 'Could not send your request right now. Please call or text (252) 227-0175 directly.';
             formMessage.classList.add('error');
         } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Send Me My Cash Offer →';
+            setSubmitButtonsState(false);
         }
     });
 

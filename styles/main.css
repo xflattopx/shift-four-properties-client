@@ -202,6 +202,12 @@ label {
     color: #2f2150;
 }
 
+/* Mobile/desktop label switcher.
+   Desktop: shows the full friendly question (.label-long).
+   Mobile (≤559px): shows a tiny uppercase chip-style label (.label-short). */
+.label-short { display: none; }
+.label-long  { display: inline; }
+
 input[type="text"],
 input[type="tel"],
 select {
@@ -259,6 +265,10 @@ button[type="submit"]:hover,
 button[type="submit"]:focus-visible {
     background: var(--cta-green-hover);
     transform: translateY(-1px);
+}
+
+.mobile-submit-wrap {
+    display: none;
 }
 
 .form-message {
@@ -814,98 +824,203 @@ button[type="submit"]:focus-visible {
 
 /* =====================================================
    RESPONSIVE — MOBILE OPTIMIZATION (max 559px)
-   Goal: hero text + entire form visible without scrolling on
-   modern phones (>=800px viewport height). Every rule here is
-   chosen to trim vertical whitespace while preserving:
-     - readability
-     - ~40px+ tap targets
-     - all trust signals (privacy line, phone micro-copy, verified subtitle)
+   Built for paid social traffic (FB short attention spans).
+   Goal: address + condition + timeline + name + phone all visible
+   above the fold on modern phones (>=800px tall) without scrolling.
+   Strategy:
+     - tiny uppercase mini-labels instead of friendly questions
+     - punchier H2 ("60-Second Cash Offer")
+     - shorter chip text ("Looks great" vs "Looks great inside")
+     - hide redundant trust copy (field-reassure, phone-micro,
+       risk-reversal, form-fallback, privacy-line) —
+       trust still carried by sticky CTA, form-trust-row, top phone-bar
+     - 38–40px chip/input tap targets (still thumb-friendly)
    ===================================================== */
 @media (max-width: 559px) {
     /* Slimmer sticky phone bar — still prominent, less tall */
     .phone-bar {
-        padding: 0.3rem 0.75rem;
-        font-size: 0.78rem;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.74rem;
         gap: 0.3rem;
-        line-height: 1.25;
+        line-height: 1.2;
     }
 
     /* Hero: aggressive vertical padding reduction */
     .hero {
-        padding: 0.75rem 0.9rem 1rem;
+        padding: 0.4rem 0.65rem 0.7rem;
     }
 
     .hero-inner {
-        gap: 0.85rem;
+        gap: 0.6rem;
     }
 
-    /* Show form first on mobile — reduces scroll friction */
+    /* Show form first on mobile — reduces scroll friction.
+       Hide hero-text on mobile entirely so the form is the only
+       thing competing for the above-the-fold viewport. The trust
+       copy still appears further down the page. */
     .hero-form {
         order: -1;
+        scroll-margin-top: 2.2rem;
+    }
+
+    .hero-text {
+        order: 1;
+        margin-top: 0.4rem;
     }
 
     /* Eyebrow: smaller, tighter */
     .eyebrow {
-        font-size: 0.68rem;
+        font-size: 0.66rem;
         letter-spacing: 0.08em;
     }
 
     /* H1: fits comfortably on 2 lines, not 4 */
     h1 {
-        font-size: clamp(1.45rem, 6.6vw, 1.85rem);
+        font-size: clamp(1.4rem, 6.4vw, 1.75rem);
         line-height: 1.15;
         margin-top: 0.3rem;
     }
 
     /* Subheadline: condensed but kept for trust */
     .subheadline {
-        margin-top: 0.5rem;
-        font-size: 0.86rem;
+        margin-top: 0.45rem;
+        font-size: 0.85rem;
         line-height: 1.45;
     }
 
-    /* Form card: reduce padding + rounding for compactness */
+    /* Form card: reduce padding + rounding for compactness.
+       Goal: every form field reachable with no scroll on iPhone-class viewports. */
     .form-card {
-        padding: 0.95rem 1rem 1rem;
-        border-radius: 0.9rem;
+        padding: 0.6rem 0.8rem 0.7rem;
+        border-radius: 0.75rem;
+    }
+
+    /* Tighter urgency pill above the heading */
+    .form-urgency {
+        font-size: 0.66rem;
+        padding: 0.15rem 0.5rem;
+        margin-bottom: 0.3rem;
     }
 
     .form-card h2 {
-        font-size: 1.2rem;
+        font-size: 1.08rem;
+        line-height: 1.05;
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.04em;
     }
 
+    /* Subtitle hides on every mobile viewport — heading + sticky CTA
+       already communicate the offer */
     .form-subtitle {
-        margin: 0.25rem 0 0.55rem;
-        font-size: 0.82rem;
-        line-height: 1.35;
+        display: none;
     }
 
-    /* Labels: tighter top margin — main vertical savings come from here */
-    label {
-        margin: 0.45rem 0 0.15rem;
-        font-size: 0.85rem;
+    /* Mobile labels: tiny uppercase mini-labels.
+       Saves ~80px vertically across 5 fields vs. the desktop friendly questions. */
+    .label-short { display: inline; }
+    .label-long  { display: none; }
+
+    label,
+    .chip-label {
+        margin: 0.3rem 0 0.05rem;
+        font-size: 0.62rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #6f6088;
     }
 
     /* Inputs: keep ~40px tap target, reduce padding */
     input[type="text"],
     input[type="tel"],
     select {
-        padding: 0.6rem 0.7rem;
+        padding: 0.55rem 0.7rem;
         font-size: 0.95rem;
-        border-radius: 0.55rem;
+        border-radius: 0.5rem;
+        min-height: 40px;
     }
 
-    .phone-micro {
-        font-size: 0.72rem;
-        margin-top: 0.15rem;
+    /* These trust copy blocks are redundant on mobile —
+       the form-trust-row + sticky CTA + top phone-bar
+       already carry every signal they convey. Hiding them
+       is the difference between a 800px form and a 550px form. */
+    .field-reassure,
+    .phone-micro,
+    .risk-reversal,
+    .form-fallback,
+    .privacy-line {
+        display: none;
+    }
+
+    /* Chip groups: tighter and consistent 2-column even on tiny phones */
+    .chip-group {
+        gap: 0.3rem;
+        margin: 0.05rem 0 0;
+    }
+
+    .chip {
+        flex: 1 1 calc(50% - 0.3rem);
+        min-height: 38px;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.85rem;
+        border-radius: 0.55rem;
     }
 
     /* CTA button stays chunky (conversion critical) but loses some padding */
     button[type="submit"] {
-        margin-top: 0.7rem;
-        padding: 0.8rem;
+        margin-top: 0.55rem;
+        padding: 0.75rem;
         font-size: 1rem;
+        border-radius: 0.65rem;
+    }
+
+    /* Keep final CTA visible on mobile without requiring an extra scroll. */
+    #seller-form {
+        padding-bottom: 4.6rem;
+    }
+
+    #seller-form > button[type="submit"] {
+        display: none;
+    }
+
+    .mobile-submit-wrap {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 160;
+        padding: 0.45rem 0.7rem calc(0.45rem + env(safe-area-inset-bottom));
+        background: linear-gradient(to top, rgba(246, 244, 251, 0.98), rgba(246, 244, 251, 0.85));
+        border-top: 1px solid rgba(61, 29, 103, 0.15);
+        box-shadow: 0 -6px 20px rgba(27, 24, 48, 0.12);
+    }
+
+    .mobile-submit-btn {
+        display: block;
+        width: min(760px, 92vw);
+        margin: 0 auto;
+        background: var(--cta-green);
+        color: #fff;
+        border: none;
         border-radius: 0.7rem;
+        font: inherit;
+        font-weight: 800;
+        font-size: 1.02rem;
+        line-height: 1.2;
+        padding: 0.85rem;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(10, 154, 98, 0.35);
+    }
+
+    .mobile-submit-btn:hover,
+    .mobile-submit-btn:focus-visible {
+        background: var(--cta-green-hover);
+    }
+
+    .mobile-submit-btn:disabled {
+        opacity: 0.7;
+        cursor: wait;
     }
 
     .form-message {
@@ -918,55 +1033,80 @@ button[type="submit"]:focus-visible {
         display: none;
     }
 
-    .privacy-line {
-        margin-top: 0.5rem;
-        font-size: 0.74rem;
+    /* Trust row: 3 short ✓ items right under the sticky CTA.
+       Only trust block left visible on mobile — the rest are hidden above. */
+    .form-trust-row {
+        margin-top: 0.45rem;
+        gap: 0.15rem 0.55rem;
+        font-size: 0.68rem;
     }
 }
 
 /* =====================================================
-   RESPONSIVE — EXTRA COMPACT (very small phones OR short
-   viewports like iPhone SE / landscape). Drops the form
-   subtitle which is redundant with the form heading +
-   privacy line. Never hides a real trust signal.
+   RESPONSIVE — EXTRA COMPACT (iPhone SE class + landscape phones)
+   Squeezes the form even further on ≤720px-tall screens.
    ===================================================== */
 @media (max-width: 559px) and (max-height: 720px),
        (max-width: 380px) {
     .hero {
-        padding: 0.6rem 0.9rem 0.85rem;
+        padding: 0.4rem 0.65rem 0.7rem;
     }
 
     .hero-inner {
-        gap: 0.7rem;
-    }
-
-    .subheadline {
-        font-size: 0.82rem;
-        margin-top: 0.4rem;
-    }
-
-    .form-subtitle {
-        display: none;
+        gap: 0.5rem;
     }
 
     .form-card {
-        padding: 0.85rem 0.9rem 0.9rem;
+        padding: 0.55rem 0.7rem 0.65rem;
     }
 
-    label {
-        margin: 0.35rem 0 0.12rem;
-        font-size: 0.82rem;
+    .form-card h2 {
+        font-size: 1rem;
+    }
+
+    .form-urgency {
+        font-size: 0.64rem;
+        padding: 0.12rem 0.4rem;
+        margin-bottom: 0.25rem;
+    }
+
+    label,
+    .chip-label {
+        margin: 0.22rem 0 0.04rem;
+        font-size: 0.58rem;
     }
 
     input[type="text"],
     input[type="tel"],
     select {
-        padding: 0.55rem 0.65rem;
+        padding: 0.45rem 0.6rem;
+        min-height: 36px;
+        font-size: 0.92rem;
     }
 
-    button[type="submit"] {
-        margin-top: 0.55rem;
-        padding: 0.75rem;
+    .chip {
+        min-height: 34px;
+        padding: 0.3rem 0.4rem;
+        font-size: 0.78rem;
+    }
+
+    .chip-group {
+        gap: 0.25rem;
+    }
+
+    /* Trust row hidden on the smallest viewports — sticky CTA + top phone-bar still cover trust. */
+    .form-trust-row {
+        display: none;
+    }
+
+    #seller-form {
+        padding-bottom: 4.2rem;
+    }
+}
+
+@media (min-width: 560px) {
+    .mobile-submit-wrap {
+        display: none !important;
     }
 }
 
@@ -1007,9 +1147,74 @@ button[type="submit"]:focus-visible {
         flex-shrink: 0;
     }
 
+    /* Tightened form-card on tablet/desktop so more of the form
+       fits in the viewport on 720-900px tall laptops. */
     .form-card {
-        padding: 1.8rem 2rem;
+        padding: 1.1rem 1.4rem 1.2rem;
     }
+
+    .form-card h2 {
+        font-size: 1.3rem;
+        line-height: 1.05;
+        margin-bottom: 0.15rem;
+    }
+
+    .form-subtitle {
+        margin: 0.2rem 0 0.7rem;
+        font-size: 0.88rem;
+        line-height: 1.4;
+    }
+
+    .form-urgency {
+        margin-bottom: 0.45rem;
+    }
+
+    /* Tighter labels — saves ~30px across 5 fields without hurting readability */
+    label,
+    .chip-label {
+        margin: 0.55rem 0 0.2rem;
+        font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    select {
+        padding: 0.6rem 0.75rem;
+    }
+
+    /* Compact field-reassure (the 🔒 line under address) */
+    .field-reassure {
+        margin: 0.25rem 0 0.3rem;
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+
+    /* Chips: still thumb-friendly but slightly tighter */
+    .chip {
+        min-height: 42px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.88rem;
+    }
+
+    /* Risk-reversal yellow box: tighter padding + smaller text on desktop too */
+    .risk-reversal {
+        margin: 0.7rem 0 0;
+        padding: 0.55rem 0.75rem;
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+
+    .phone-micro {
+        margin: 0.2rem 0 0;
+        font-size: 0.78rem;
+    }
+
+    /* Submit + post-submit spacing */
+    button[type="submit"] {
+        margin-top: 0.85rem;
+        padding: 0.85rem;
+    }
+
 
     .testimonial-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -1025,26 +1230,54 @@ button[type="submit"]:focus-visible {
    ===================================================== */
 @media (min-width: 860px) {
 
+    /* Reduced padding so more of the form is visible on first paint
+       on standard 720-900px tall laptop viewports. */
     .hero {
-        padding: 4rem 1.5rem 4rem;
+        padding: 1.75rem 1.5rem 2.5rem;
     }
 
-    /* Switch to two-column side-by-side layout */
+    /* Switch to two-column side-by-side layout.
+       align-items: start (instead of center) keeps the left text
+       column anchored to the top of the hero. With center, the
+       text floated down to vertically center against the taller
+       form column, making it look "low" on page load. */
     .hero-inner {
         grid-template-columns: 1fr 400px;
         gap: 3rem;
-        align-items: center;
+        align-items: start;
     }
 
     /* Text left-aligned on desktop */
     .hero-text {
         text-align: left;
+        /* Nudge the text down a hair so the eyebrow line isn't
+           visually flush with the form-card's urgency pill. */
+        padding-top: 0.4rem;
+    }
+
+    /* Tighten H1 a bit on desktop so subheadline + trust bar + pledge
+       all fit without pushing the column past the form's height. */
+    h1 {
+        font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+        line-height: 1.08;
     }
 
     /* Subheadline no longer auto-centered */
     .subheadline {
-        margin: 0.9rem 0 0;
+        margin: 0.7rem 0 0;
         max-width: none;
+        font-size: 0.95rem;
+    }
+
+    /* Tighter hero-trust spacing on desktop */
+    .hero-trust {
+        margin: 1rem 0 0.75rem;
+    }
+
+    .hero-pledge {
+        margin-top: 0.5rem;
+        font-size: 0.88rem;
+        padding: 0.55rem 0.75rem;
     }
 
     /* Trust bar: 2×2 grid within the narrower text column */
@@ -1140,35 +1373,63 @@ button[type="submit"]:focus-visible {
     color: #6a5f82;
     font-size: 0.82rem;
 }
-.next-steps {
+/* Hero "What happens next" — sits in the left column on desktop
+   to fill the whitespace below the pledge while keeping the form
+   itself shorter. Hidden on mobile (the form is the focus there). */
+.hero-next {
+    display: none;
+    margin-top: 1.1rem;
+    padding: 0.95rem 1.05rem 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(243, 194, 65, 0.28);
+    border-radius: 10px;
+    text-align: left;
+}
+.hero-next-eyebrow {
+    margin: 0 0 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ecu-gold);
+}
+.hero-next-list {
     list-style: none;
     padding: 0;
-    margin: 1rem 0 0.6rem;
-    border-top: 1px solid var(--soft-line);
-    padding-top: 0.9rem;
+    margin: 0;
+    counter-reset: hn;
 }
-.next-steps li {
+.hero-next-list li {
     display: flex;
     align-items: flex-start;
-    gap: 0.55rem;
-    padding: 0.35rem 0;
-    font-size: 0.88rem;
-    color: #3a2f57;
-    line-height: 1.4;
+    gap: 0.65rem;
+    padding: 0.3rem 0;
+    font-size: 0.92rem;
+    color: #f4eeff;
+    line-height: 1.45;
 }
-.ns-num {
+.hero-next-list li strong { color: #fff; }
+.hn-num {
     flex-shrink: 0;
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: var(--ecu-purple);
-    color: #fff;
+    background: var(--ecu-gold);
+    color: var(--ecu-purple-dark);
     font-size: 0.72rem;
     font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 1px;
+}
+.hn-text {
+    flex: 1;
+}
+
+/* Reveal on desktop only — mobile keeps form-first focus */
+@media (min-width: 860px) {
+    .hero-next { display: block; }
 }
 
 /* Meet Chase — owner-operator humanization block */
@@ -1432,10 +1693,21 @@ button[type="submit"]:focus-visible {
     background: var(--ecu-gold);
     color: var(--ecu-purple-dark);
 }
-/* Mobile-only reveal + body padding to avoid overlap */
-@media (max-width: 759px) {
+/* Mobile-only reveal + body padding to avoid overlap.
+   On phones (≤559px) the sticky "Get My Cash Offer" submit button
+   already sits at the bottom of the viewport, so the call/text bar
+   would visually collide with it. Show the call/text bar only on
+   tablets / mid-size viewports where the sticky submit isn't shown. */
+@media (min-width: 560px) and (max-width: 759px) {
     .mobile-cta { display: flex; }
-    /* Pad the footer so the bar doesn't cover content */
+    body { padding-bottom: 4.2rem; }
+}
+
+@media (max-width: 559px) {
+    /* The sticky submit button (.mobile-submit-wrap) takes this slot.
+       Keep call/text accessible via the form-fallback link inside
+       the form card and the phone-bar at the top. */
+    .mobile-cta { display: none !important; }
     body { padding-bottom: 4.2rem; }
 }
 
@@ -1770,8 +2042,14 @@ button[type="submit"]:focus-visible {
     background: var(--ecu-purple-dark);
 }
 
-/* On very narrow screens, chips stack full-width for one-handed thumb use */
+/* On very narrow screens, keep chips at 2-up so the entire form
+   stays visible without scrolling. (Previous rule stacked them
+   full-width — that pushed the phone field below the fold.) */
 @media (max-width: 419px) {
-    .chip { flex: 1 1 100%; }
+    .chip {
+        flex: 1 1 calc(50% - 0.35rem);
+        font-size: 0.8rem;
+        padding: 0.4rem 0.4rem;
+    }
 }
 
