@@ -99,6 +99,14 @@ fbq('track', 'PageView');
                         <input type="hidden" id="condition" name="condition" value="" required>
                         <input type="hidden" id="timeline"  name="timeline"  value="" required>
 
+                        <!-- Honeypot — hidden from real users (offscreen + tabindex=-1).
+                             Bots that scrape and auto-fill all fields will fill this; humans won't.
+                             If this field has a value at submit, the JS silently drops the lead. -->
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="hp_website">Website (leave blank)</label>
+                            <input type="text" id="hp_website" name="hp_website" tabindex="-1" autocomplete="off">
+                        </div>
+
                         <!-- Address — lowest-friction field, asked first.
                              Mobile renders the label as a small uppercase mini-label via .form-label.
                              Desktop sees the full friendly question via .label-long. -->
@@ -167,12 +175,13 @@ fbq('track', 'PageView');
                         </ul>
                     </form>
 
-                    <!-- Mobile sticky CTA keeps the final submit action visible on short viewports.
-                         Sits fixed at the bottom of the viewport on phones so the seller can
-                         tap "Get My Cash Offer" without scrolling, no matter where they are
-                         in the form. The button is wired to the seller-form via form="seller-form". -->
-                    <div class="mobile-submit-wrap">
-                        <button type="submit" form="seller-form" class="mobile-submit-btn" aria-label="Get my cash offer">Get My Cash Offer →</button>
+                    <!-- Mobile sticky scroll-back CTA — HIDDEN by default. Slides up
+                         only when the user has scrolled PAST the form (form bottom
+                         above viewport top). Tapping it is an anchor scroll back to
+                         the form, NOT a form submit. JS in main.js drives the
+                         .is-visible class via IntersectionObserver. -->
+                    <div class="mobile-submit-wrap" id="mobile-sticky-cta" aria-hidden="true">
+                        <a href="#seller-form-section" class="mobile-submit-btn" aria-label="Back to cash offer form">Get My Cash Offer →</a>
                     </div>
 
                     <!-- FORM FALLBACK: text-first path for sellers who skip forms -->
